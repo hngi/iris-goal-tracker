@@ -1,1 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-color: #f5f5f5;
+    --text-color: #1d1d1d;
+    --background-alt: #f5f5f5;
+    --light: #FAFAFA;
+    --placeholder-color: #B4B4B4;
+    --text-contrast: #FFFFFF;
+    --dark: #000000;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: url('https://res.cloudinary.com/iolarav/image/upload/v1569266550/samuel-zeller-rk_Zz3b7G2Y-unsplash_bqvywl.jpg');
+    background-size: cover;
+  }
+
+  .header {
+    overflow: hidden;
+    padding: 10px;
+  }
+  
+  .header a {
+    float: left;
+    color: #1d1d1d;
+    text-align: center;
+    padding: 20px 30px 10px 5px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 22px; 
+    border-radius: 4px;
+  }
+  
+  .header a.logo {
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 28px;
+  }
+  
+  .header-right {
+    float: right;
+  }
+  .main-text{
+      font-size: 60px;
+      padding-left:40px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+  }
+
+  .sub-text{
+      font-size: 20px;
+      padding-left:40px
+  }
+
+  button{
+    padding: 20px;
+    background-color: #0083FF;
+    color: #1d1d1d;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 40px;
+  }
+  @media screen and (max-width: 500px) {
+    .header a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+    
+    .header {
+      float: none;
+    }
+  }
+    
