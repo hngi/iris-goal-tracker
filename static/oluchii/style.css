@@ -1,0 +1,134 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-color: #f5f5f5;
+    --text-color: #1d1d1d;
+    --background-alt: #f5f5f5;
+    --light: #FAFAFA;
+    --placeholder-color: #B4B4B4;
+    --text-contrast: #FFFFFF;
+    --dark: #000000;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    font-family: 'Roboto', sans-serif;
+    background: url('https://res.cloudinary.com/iolarav/image/upload/v1569266550/samuel-zeller-rk_Zz3b7G2Y-unsplash_bqvywl.jpg');
+    background-size: cover;
+  }
+
+  .header {
+    overflow: hidden;
+    padding: 10px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #container{
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    color: #1d1d1d;
+    z-index: 2;
+  }
+
+  .header a {
+    float: left;
+    color: #1d1d1d;
+    text-align: center;
+    padding: 20px 30px 10px 5px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 22px; 
+    border-radius: 4px;
+  }
+
+  .header a.logo {
+    top: 0;
+    padding-left: 30px;
+  }
+
+  .header-right {
+    position: absolute;
+    right: 100px;
+    height: 30px;
+  }
+  
+  .header-right ul li {
+    float: right;
+    list-style: none;
+  }
+
+  .header-right ul li a {
+    display: block;
+    color: #1d1d1d;
+    text-decoration: none;
+    padding: 0 10px;
+  }
+
+  .content{
+    position: relative;
+    padding-top: 100px;
+  }
+
+  .main-text{
+      font-size: 50px;
+      padding-left:40px;
+      padding-right: 20px;
+  }
+
+  .sub-text{
+      font-size: 20px;
+  }
+
+  button{
+    padding: 20px;
+    background-color: #0083FF;
+    color: #1d1d1d;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+  }
+
+  img{
+    height: 50px;
+    width: 50px;
+  }
+
+  /*Responsiveness*/
+  @media screen and (max-width: 599px) {
+  .header #container {
+    width: 100%;
+  }
+  .header img {
+    padding-left: 3%;
+  }
+  .header-right {
+    width: 100%;
+    top: 45px;
+    left: 0px;
+  }
+  
+  .header-right ul {
+    background: #222;
+    width: 100%;
+    margin: 0px;
+  }
+  .header-right ul li {
+    float: right;
+  }
+  .header-right ul li a {
+    padding: 10px;
+    line-height: 20px;
+  }
+}
