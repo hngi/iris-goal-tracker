@@ -1,0 +1,78 @@
+.container-fluid {
+    background-color: #e5e5e5;
+    height: 100vh;
+}
+
+.img-fluid {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+.profile {
+    margin-bottom: 30px;
+}
+.edit {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+i {
+    vertical-align: middle !important;
+}
+i.check {
+    background-color: white;
+    color: #0083FF;
+    border-radius: 50%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.new-goal {
+    background-color: #0083FF;
+}
+.new-goal h4 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.new-goal .input-group {
+    width: 80%
+}
+
+.new-goal textarea {
+    resize: none;
+}
+
+.my-goals {
+    color: #0083FF;
+}
+
+i.add {
+    color: white;
+    background-color: #0083FF;
+    padding: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+    position: relative;
+    float: right;
+    top: -14px;
+}
+
+input.new-todo  {
+    background-color: #e5e5e5;
+    margin-bottom: 10px;
+}
+
+.sample-goal {
+    padding: 20px;
+}
+
+.todo-item {
+    border-bottom: 1px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.checkbox {
+    margin-right: 10px;
+}
