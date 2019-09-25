@@ -1,29 +1,8 @@
-# Iris-Goal-Tracker
+# IrisGoalTracker
 
 [!Build Status]([Angular CLI](https://github.com/angular/angular-cli)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
-<div align ="center">
-![Team Iris](https://res.cloudinary.com/dka33u9mx/image/upload/v1569325835/iris-logo_stgywb.png)
-<br/>
 
-</div>
-
-#Installation Guide 
-- You need a server, download [Wamp](http://www.wampserver.com/en/) or [Xampp](https://www.apachefriends.org/index.html)
-- Clone this repository into `htdocs` of `www` folder in your respective servers. <br/>
-- **If you have not been added to the organization, kindly work in your forked repository and open a pull request here** <br/>
-- Fork the repository and push to your `staging branch`
-- Merge to your `master` and compare forks with the original repository
-- Open a Pull Request.
-- **Read [this](https://help.github.com/en/articles/creating-a-pull-request-from-a-fork)**
-
-```bash
-git clone https://github.com/hngi/iris-goal-tracker
-```
-
-```bash
-Visit localhost:4200 in your browser
-```
 
 # Development server
 
