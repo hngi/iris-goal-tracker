@@ -1,46 +1,49 @@
 <section class="wrapper wrapper-full-page bg-img overlay">
-    <nav class="navbar navbar-dark navbar-expand-md navbar-toggleable-sm fixed-top">
-        <div class="container">
-            <a class="navbar-brand">
-                <img src="https://res.cloudinary.com/iolarav/image/upload/v1569355074/iris-logo_no5zph.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                GOAL TRACKER
-            </a>
-            <button mat-ripple class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="btn login-trigger" [class.active]="'login-button'==sign" (click)="sign='login-button'" routerLinkActive="active">Sign In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn register-trigger" [class.active]="'register-button'==sign" (click)="sign='register-button'" routerLinkActive="active">Sign Up</a>
-                </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div id="home-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8  d-lg-block">
-                    <h1 class="display-4"><strong>Stay focused,</strong> go after your dreams and <strong>keep moving</strong> towards your <strong>goals.</strong></h1>
-                    <div class="note d-flex">
-                        Goal Tracker is a powerful and flexible tool that boosts your productivity and organizes your life - in just a few steps.
-                    </div>
-                    <div class="sign-button">
-                        <button class="register-button btn btn-primary btn-lg shadow" [class.active]="'register-button'==sign" type="button"
-                                (click)="sign='register-button'">Get Started - It's free!</button>
-                    </div>
-                </div>
-                <div class="col-lg-4" [ngSwitch]="sign">
-                    <app-login *ngSwitchCase="'login-button'"></app-login>
-                    <app-register *ngSwitchCase="'register-button'"></app-register>
-                </div>
-            </div>
-        </div>
+  <nav class="navbar navbar-dark navbar-expand-md navbar-toggleable-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand">
+        <img src="https://res.cloudinary.com/iolarav/image/upload/v1569355074/iris-logo_no5zph.png" width="30"
+          height="30" class="d-inline-block align-top" alt="">
+        GOAL TRACKER
+      </a>
+      <button mat-ripple class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="btn login-trigger" [class.active]="sign === 'login'" (click)=" sign = 'login'"
+              routerLinkActive="active">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn register-trigger" [class.active]="sign === 'register'" (click)="sign = 'register'"
+              routerLinkActive="active">Sign Up</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+  <div id="home-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8  d-lg-block">
+          <h1 class="display-4"><strong>Stay focused,</strong> go after your dreams and <strong>keep moving</strong>
+            towards your <strong>goals.</strong></h1>
+          <div class="note d-flex">
+            Goal Tracker is a powerful and flexible tool that boosts your productivity and organizes your life - in just
+            a few steps.
+          </div>
+          <div class="sign-button">
+            <button class="register-button btn btn-primary btn-lg shadow" [class.active]="sign === 'register'"
+              type="button" (click)="sign = 'register'">Get Started - It's free!</button>
+          </div>
+        </div>
+        <div class="col-lg-4" [ngSwitch]="sign">
+          <app-login *ngSwitchCase="'login'"></app-login>
+          <app-register *ngSwitchCase="'register'"></app-register>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-
-
