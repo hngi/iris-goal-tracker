@@ -19,10 +19,20 @@ export class UtilService {
     });
   }
 
-  showToast(opts: { title: string, message?: string, type?: string }) {
-    this.toast.fire({
+  showAlert(opts: SwalOptions) {
+    return swal.fire({
+      title: opts.title,
+      text: opts.message,
+      confirmButtonColor: 'var(--primary)'
+    });
+  }
+
+  showToast(opts: SwalOptions) {
+    return this.toast.fire({
       type: opts.type || 'success',
       title: opts.title
     });
   }
 }
+
+interface SwalOptions { title: string; message?: string; type?: string; }

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { UtilService } from './util.service';
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
@@ -9,8 +10,9 @@ import { throwError } from 'rxjs';
 export class ApiService {
   url: string;
 
-  constructor(public http: HttpClient) {
-    this.url = 'https://iris-goal-tracker-api.herokuapp.com/api';
+  constructor(public http: HttpClient, private utils: UtilService) {
+    // this.url = 'https://iris-goal-tracker-api.herokuapp.com/api';
+    this.url = 'http://localhost:3000/api';
   }
 
   get(endpoint: string, params?: any, reqOpts?: any) {
@@ -67,9 +69,13 @@ export class ApiService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
+      if (error.error.code === 'EXPIRED_TOKEN') {
+        return this.utils.showAlert({ title: 'Expired Session', message: error.error.message });
+      }
+
       console.error(
         `Backend returned code ${error.status}, ` +
-        `body was:`, error.error.message);
+        `body was:`, error.error.message, 'API code: ', error.error.code);
       errorMessagge = error.error.message;
 
     }
