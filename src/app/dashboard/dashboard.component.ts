@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   thisUser: any;
 
   goal: any;
+  mobile: boolean;
 
   constructor(private user: UserService, private utils: UtilService) {
     this.createGoalForm = new FormGroup({
@@ -30,6 +31,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (window.screen.width === 360) {
+      this.mobile = true;
+    }
+    
     this.loadGoals();
     this.thisUser = this.user.getUserObj();
   }
