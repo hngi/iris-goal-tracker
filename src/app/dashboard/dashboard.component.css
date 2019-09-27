@@ -10,6 +10,7 @@
 }
 .profile {
     margin-bottom: 30px;
+    border-radius: 10px;
 }
 .edit {
     display: inline-block;
@@ -28,6 +29,7 @@ i.check {
 }
 .new-goal {
     background-color: #0083FF;
+    border-radius: 10px;
 }
 .new-goal h4 {
     margin-top: 15px;
@@ -65,10 +67,11 @@ input.new-todo  {
 
 .sample-goal {
     padding: 20px;
+    border-radius: 10px;
 }
 
 .todo-item {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #e5e5e5;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -97,3 +100,12 @@ input.new-todo  {
 .material-icons.md-54 { font-size: 54px; }
 
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
+
+.mg-card {
+    border-radius: 10px;
+}
+
+.mg-card-body {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
