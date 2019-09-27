@@ -10,11 +10,12 @@ import { Router } from '@angular/router';
 
 export class AppComponent {
   constructor(private user: UserService, private router: Router) {
-    const thisUser = this.user.getUserObj();
-    if (thisUser) {
-      this.router.navigate(['/dashboard']);
-    } else {
-      this.router.navigate(['/']);
-    }
+    this.user.getLoggedInStatus().subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.router.navigate(['/']);
+      }
+    });
   }
 }

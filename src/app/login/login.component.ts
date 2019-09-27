@@ -10,6 +10,7 @@ import { UtilService } from '../util.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  loading = false;
 
   constructor(private user: UserService, private utils: UtilService) {
     this.loginForm = new FormGroup({
@@ -22,13 +23,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(userData: any) {
+    this.loading = true;
     this.user.login(userData).subscribe((res: any) => { // res.data is the user object
       this.loginForm.reset();
-      console.log(res.data);
-      this.user.saveUser(res.data);
+      this.user.saveUser(res.data, true);
+      this.loading = false;
       this.utils.showToast({ title: 'Successfully logged in', type: 'success' });
     }, err => {
-      console.log('error', err);
+      this.loading = false;
       this.utils.showToast({ title: err, type: 'error' });
     });
   }

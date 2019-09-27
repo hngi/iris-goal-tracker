@@ -10,6 +10,8 @@ declare let swal: any;
 })
 export class RegisterComponent implements OnInit {
   signupForm: FormGroup;
+  loading = false;
+
   constructor(private user: UserService, private utils: UtilService) {
     this.signupForm = new FormGroup({
       name: new FormControl(''),
@@ -22,6 +24,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(userData: any) {
+    this.loading = true;
     this.user.register(userData).subscribe(async res => {
       console.log('signup response:', res);
       this.signupForm.reset();
@@ -38,14 +41,16 @@ export class RegisterComponent implements OnInit {
         console.log('token received', token);
         this.user.verify(token).subscribe((user: any) => {
           this.user.saveUser(user.data);
+          this.loading = false;
           this.utils.showToast({ title: 'Verification complete!', type: 'success' });
         }, err => {
-          console.log('verify error', err);
+          this.loading = false;
           this.utils.showToast({ title: err, type: 'error' });
         });
       }
+      this.loading = false;
     }, err => {
-      console.log('error', err);
+      this.loading = false;
       this.utils.showToast({ title: err, type: 'error' });
     });
   }
