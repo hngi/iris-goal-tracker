@@ -1,5 +1,4 @@
 section {
-  height: 80vh;
   margin: 0 1.5%;
   width: 30%;
 }
@@ -65,4 +64,46 @@ h4 {
 
 .goal:hover .action-buttons {
   display: block;
+}
+
+.goals-card {
+    height: 350px;
+}
+
+.scrollable{
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.todo-card {
+    height: 550px;
+}
+
+.scrollable-todo{
+    overflow-y: auto;
+    max-height: 320px;
+}
+
+/***    SCROLLBAR     ***/
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    color: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(165, 165, 165, 0.7);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(128, 128, 128, 0.7);
 }
