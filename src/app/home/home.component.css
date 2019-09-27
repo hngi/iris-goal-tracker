@@ -56,3 +56,13 @@ nav {
   -o-transition: background-color 0.5s ease-out;
   transition: background-color 0.5s ease-out;
 }
+
+@media (max-width: 768px) {
+  .mobile-padding {
+    padding-top: 0;
+  }
+
+  .mobile-margin-bottom{
+    margin-bottom: 10vh;
+  }
+}
