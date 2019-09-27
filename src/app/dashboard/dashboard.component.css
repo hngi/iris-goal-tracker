@@ -43,7 +43,7 @@ i.check {
     resize: none;
 }
 
-.my-goals {
+.mid-heading {
     color: #0083FF;
 }
 
@@ -76,3 +76,24 @@ input.new-todo  {
 .checkbox {
     margin-right: 10px;
 }
+
+.material-icons.md-18 { font-size: 18px; }
+
+.stat-card {
+    width: 170px;
+    height: 80px;
+    color: white;
+    border-radius: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.stat-number {
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.material-icons.md-54 { font-size: 54px; }
+
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
