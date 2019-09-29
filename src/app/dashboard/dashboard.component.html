@@ -4,7 +4,7 @@
   <div class="d-sm-flex align-items-center justify-content-between m-4">
     <h1 class="d-inline h3 mb-0 text-gray-800"> Goal Tracker</h1>
     <div class="d-inline d-md-none d-lg-none d-xl-none">
-        <i class="material-icons md-28 text-gray-800" style="float: right">person</i>
+        <i class="material-icons action-icon md-28 text-gray-800" (click)="editUser()" style="float: right">person</i>
     </div>
   </div>
 
@@ -25,9 +25,9 @@
                   </div>
                   <h5>{{ thisUser.name }}</h5>
                 </div>
-                <small (click)="editUser()"> <i class="material-icons">edit</i></small>
+                <small (click)="editUser()" style="cursor: pointer"> <i class="material-icons">edit</i></small>
               </div>
-              <div class="text-s d-flex w-100 mb-3 justify-content-between text-gray-800 align-items-center" style="background-color: hotpink">
+              <div class="text-s d-flex w-100 mb-3 justify-content-between text-gray-800 align-items-center">
                 <div class="d-flex flex-row align-items-center">
                   <i class="material-icons mr-1 text-s text-gray-300">email</i>
                   {{ thisUser.email }}
@@ -45,12 +45,12 @@
           <h4 class="text-white">Add new goal</h4>
           <form [formGroup]="createGoalForm" (ngSubmit)="createGoal(createGoalForm.value)">
             <div class="form-group">
-              <input type="text" formControlName="title" placeholder="Goal title"
+              <input type="text" formControlName="title" placeholder="Goal Title"
                 class="form-control form-control-user">
             </div>
             <div class="form-group">
               <textarea formControlName="description" class="form-control form-control-user" name="" id="" cols="5"
-                rows="5" placeholder="Goal description"></textarea>
+                rows="5" placeholder="Goal Description"></textarea>
             </div>
             <div class="text-center">
               <button type="submit" class="btn btn-outline-light">Add</button>
@@ -61,85 +61,84 @@
     </section>
 
     <section class="mobile-view">
-        <h4>At a glance</h4>
-        <div class="card border-0 shadow py-2 mb-3">
-        <div class="row flex-row">
-            <div class="col-4 col-xs-4 mb-4 metric-card">
-            <div class="card p-2 border-0 text-center">
-                <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="h5 mb-0 font-weight-bold mb-1">{{ goals.length }}</div>
-                    <div class="text-xs font-weight-bold">All Goals</div>
-                </div>
-                </div>
+      <h4>At a glance</h4>
+      <div class="card border-0 shadow py-2 mb-3">
+      <div class="row flex-row">
+          <div class="col-4 col-xs-4 mb-4 metric-card">
+          <div class="card p-2 border-0 text-center">
+              <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                  <div class="h5 mb-0 font-weight-bold mb-1">{{ goals.length }}</div>
+                  <div class="text-xs font-weight-bold">All Goals</div>
+              </div>
+              </div>
 
-            </div>
-            </div>
-            <div class="col-4 mb-4 metric-card">
-            <div class="card text-center text-warning p-2 border-0">
-                <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="h5 mb-0 font-weight-bold mb-1">{{ getGoalsMetric(false) }}</div>
-                    <div class="text-xs font-weight-bold">Pending Goals</div>
-                </div>
-                </div>
-            </div>
-            </div>
-            <div class="col-4 mb-4 metric-card">
-            <div class="card text-center text-success p-2 border-0">
-                <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="h5 mb-0 font-weight-bold mb-1">{{ getGoalsMetric() }}</div>
-                    <div class="text-xs font-weight-bold">Completed Goals</div>
-                </div>
-                </div>
-            </div>
+          </div>
+          </div>
+          <div class="col-4 mb-4 metric-card">
+          <div class="card text-center text-warning p-2 border-0">
+              <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                  <div class="h5 mb-0 font-weight-bold mb-1">{{ getGoalsMetric(false) }}</div>
+                  <div class="text-xs font-weight-bold">Pending Goals</div>
+              </div>
+              </div>
+          </div>
+          </div>
+          <div class="col-4 mb-4 metric-card">
+          <div class="card text-center text-success p-2 border-0">
+              <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                  <div class="h5 mb-0 font-weight-bold mb-1">{{ getGoalsMetric() }}</div>
+                  <div class="text-xs font-weight-bold">Completed Goals</div>
+              </div>
+              </div>
+          </div>
 
-            </div>
-            
-        </div>
-        </div>
+          </div>
+          
+      </div>
+      </div>
 
-        <h4>My Goals</h4>
-        <div class="card border-0 shadow py-2 goals-card">
-          <div class="card-body p-0 py-3" *ngIf="goals.length > 0">
-            <div class="row no-gutters align-items-center scrollable">
-              <div class="list-group w-100 p-4">
-                <div *ngFor="let goal of goals"
-                  class="list-group-item goal flex-column align-items-start mt-1 mb-3 p-0 border-0">
-                  <div class="d-flex w-100 justify-content-between">
-                    <a class="h5 mb-1 text-primary" (click)="loadSingleGoal(goal)">{{ goal.title }}</a>
-                    <span class="action-buttons">
-                      <small class="material-icons md-20" (click)="editGoal(goal)">edit</small>
-                      <small class="material-icons md-20 text-danger" (click)="deleteGoal(goal)">close</small>
-                    </span>
-                  </div>
-                  <small class="mb-2" *ngIf="goal.description">{{ goal.description }}</small>
-                  <div class="progress mt-2">
-                    <div class="progress-bar" role="progressbar" [ngStyle]="{ width: goal.progress+'%' }"
-                      aria-valuemin="0" aria-valuemax="100"
-                      [ngClass]="{'bg-success': goal.isComplete, 'bg-warning': !goal.isComplete }"></div>
-                  </div>
+      <h4>My Goals</h4>
+      <div class="card border-0 shadow py-2 goals-card">
+        <div class="card-body p-0 py-3" *ngIf="goals.length > 0">
+          <div class="row no-gutters align-items-center scrollable">
+            <div class="list-group w-100 p-4">
+              <div *ngFor="let goal of goals"
+                class="list-group-item goal flex-column align-items-start mt-1 mb-3 p-0 border-0">
+                <div class="d-flex w-100 justify-content-between">
+                  <a class="h5 mb-1 text-primary" (click)="loadSingleGoal(goal)">{{ goal.title }}</a>
+                  <span class="action-buttons">
+                    <small class="material-icons md-20" (click)="editGoal(goal)">edit</small>
+                    <small class="material-icons md-20 text-danger" (click)="deleteGoal(goal)">close</small>
+                  </span>
+                </div>
+                <small class="mb-2" *ngIf="goal.description">{{ goal.description }}</small>
+                <div class="progress mt-2">
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{ width: goal.progress+'%' }"
+                    aria-valuemin="0" aria-valuemax="100"
+                    [ngClass]="{'bg-success': goal.isComplete, 'bg-warning': !goal.isComplete }"></div>
                 </div>
               </div>
             </div>
           </div>
-
-
-          <div class="card-body d-flex flex-column justify-content-center align-items-center"
-            *ngIf="goals.length === 0">
-            <h5 class="text-black-50 mt-4 w-50 text-center">It's quite lonely here. Look over that corner to add a new
-              goal.</h5>
-          </div>
-        </div>
-        <!-- <div class="mt-3 text-center">
-          <a href="">view more</a>
-        </div> -->
-
-        <div class="text-right pr-0 pt-2 d-md-none d-lg-none d-xl-none">
-          <button class="btn" type="submit"><i class="material-icons add">add</i></button>
         </div>
 
+
+        <div class="card-body d-flex flex-column justify-content-center align-items-center"
+          *ngIf="goals.length === 0">
+          <h5 class="text-black-50 mt-4 w-50 text-center">It's quite lonely here. Look over that corner to add a new
+            goal.</h5>
+        </div>
+      </div>
+      <!-- <div class="mt-3 text-center">
+        <a href="">view more</a>
+      </div> -->
+
+      <div class="text-right pr-0 pt-2 d-md-none d-lg-none d-xl-none">
+        <button class="btn" type="button"><i class="material-icons action-icon add">add</i></button>
+      </div>
     </section>
 
     <section>
@@ -178,8 +177,7 @@
             </div>
           </div>
         </div>
-        <div class="card-body d-flex flex-column justify-content-center align-items-center" *ngIf="!goal">
-
+        <div class="card-body d-flex flex-column h-100 justify-content-center align-items-center" *ngIf="!goal">
           <svg width="194" height="150" viewBox="0 0 194 194" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M142.103 85.3009C141.174 82.9502 138.515 81.799 136.164 82.7274C133.813 83.6568 132.661 86.316 133.59 88.6667C135.916 94.5492 137.095 100.766 137.095 107.146C137.095 134.859 114.549 157.406 86.8351 157.406C59.1192 157.406 36.5701 134.859 36.5701 107.146C36.5701 79.4328 59.1192 56.886 86.8351 56.886C93.2371 56.886 99.4648 58.0723 105.345 60.4121C107.693 61.3476 110.355 60.1999 111.29 57.8518C112.225 55.5029 111.078 52.8415 108.73 51.9071C101.768 49.1366 94.4011 47.732 86.8354 47.732C54.0722 47.732 27.4165 74.3846 27.4165 107.146C27.4165 139.907 54.071 166.56 86.8351 166.56C119.596 166.56 146.249 139.907 146.249 107.146C146.249 99.6091 144.854 92.2599 142.103 85.3009Z"

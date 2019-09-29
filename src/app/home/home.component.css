@@ -3,7 +3,7 @@
 }
 
 .row {
-    padding-top: 62px;
+  padding-top: 62px;
 }
 
 nav {
@@ -57,12 +57,19 @@ nav {
   transition: background-color 0.5s ease-out;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .mobile-padding {
     padding-top: 0;
   }
 
   .mobile-margin-bottom{
     margin-bottom: 10vh;
+  }
+}
+
+@media (min-width: 992px) {
+  .row {
+    margin-top: -6%;
+    padding-bottom: 9%;
   }
 }
