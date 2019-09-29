@@ -92,6 +92,11 @@ export class UserService {
     return this.api.post('todos', todo, { headers });
   }
 
+  removeTodo(todo: string) {
+    const headers = this.getAuthHeader();
+    return this.api.delete('todos/' + todo, { headers });
+  }
+
   markTodo(id: string, isComplete: boolean) {
     const headers = this.getAuthHeader();
     return this.api.put(`todos/${id}`, { isComplete }, { headers });

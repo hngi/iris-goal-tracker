@@ -19,7 +19,7 @@
       </div>
 
       <div>
-        <button type="submit" class="btn btn-primary btn-block mx-auto">
+        <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-block mx-auto">
           <div *ngIf="!loading">Sign in</div>
           <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
             <span class="sr-only">Loading...</span>
