@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { UtilService } from '../util.service';
 import { Router } from '@angular/router';
@@ -15,9 +15,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(private user: UserService, private utils: UtilService, private router: Router) {
     this.signupForm = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl(''),
-      password: new FormControl('')
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     });
   }
 

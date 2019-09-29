@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { UserService } from '../user.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UtilService } from '../util.service';
 
 declare let swal: any;
@@ -19,9 +19,12 @@ export class DashboardComponent implements OnInit {
   goal: any;
   mobile: boolean;
 
-  constructor(private user: UserService, private utils: UtilService) {
+  @ViewChild('newGoalCard', { static: false }) goalCard: ElementRef;
+  @ViewChild('singleGoalCard', { static: false }) singleGoalCard: ElementRef;
+
+  constructor(private user: UserService, private utils: UtilService, private renderer: Renderer2) {
     this.createGoalForm = new FormGroup({
-      title: new FormControl(''),
+      title: new FormControl('', Validators.required),
       description: new FormControl('')
     });
 
@@ -34,15 +37,24 @@ export class DashboardComponent implements OnInit {
     if (window.screen.width === 360) {
       this.mobile = true;
     }
-    
+
     this.loadGoals();
     this.thisUser = this.user.getUserObj();
+  }
+
+  public toggleGoalCard(on = true) {
+    this.renderer.setStyle(this.goalCard.nativeElement, 'display', on ? 'flex' : 'none');
+  }
+
+  public toggleSingleGoalCard(on = true) {
+    this.renderer.setStyle(this.singleGoalCard.nativeElement, 'display', on ? 'flex' : 'none');
   }
 
   public createGoal(goalData: any) {
     this.user.createGoal(goalData).subscribe((res: any) => {
       this.goals.unshift(res.data);
       this.createGoalForm.reset();
+      this.toggleGoalCard(false);
     }, err => {
       this.utils.showToast({ title: err, type: 'error' });
     });
@@ -50,8 +62,22 @@ export class DashboardComponent implements OnInit {
 
   public createTodo(todoData: any) {
     this.user.createTodo(this.goal._id, todoData).subscribe((res: any) => {
-      this.goal.todos.push(res.data);
+      this.goal.todos.unshift(res.data);
       this.createTodoForm.reset();
+    }, err => {
+      this.utils.showToast({ title: err, type: 'error' });
+    });
+  }
+
+  public deleteTodo(todo: any) {
+    this.user.removeTodo(todo._id).subscribe((res: any) => {
+      const index = this.goal.todos.findIndex((todoObj: any) => todoObj._id === todo._id);
+      this.goal.todos.splice(index, 1);
+      this.utils.showToast({
+        title: 'Deleted!',
+        message: 'Todo item has been removed.',
+        type: 'success'
+      });
     }, err => {
       this.utils.showToast({ title: err, type: 'error' });
     });
@@ -70,6 +96,7 @@ export class DashboardComponent implements OnInit {
     this.user.getSingleGoal(goal._id).subscribe((res: any) => {
       this.goal = this.formatGoal(res.data, false);
       this.goal.progress = goal.progress;
+      this.toggleSingleGoalCard();
     }, err => {
       this.utils.showToast({ title: err, type: 'error' });
     });
