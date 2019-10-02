@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { UserService } from '../user.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UtilService } from '../util.service';
 
 declare let swal: any;
@@ -15,14 +15,19 @@ export class DashboardComponent implements OnInit {
   createTodoForm: FormGroup;
 
   thisUser: any;
-
+  scheduleDate = new Date('yyyy/mm/dd').toISOString;
   goal: any;
   mobile: boolean;
+  today = new Date().toJSON().split('T')[0];
 
-  constructor(private user: UserService, private utils: UtilService) {
+  @ViewChild('newGoalCard', { static: false }) goalCard: ElementRef;
+  @ViewChild('singleGoalCard', { static: false }) singleGoalCard: ElementRef;
+
+  constructor(private user: UserService, private utils: UtilService, private renderer: Renderer2) {
     this.createGoalForm = new FormGroup({
-      title: new FormControl(''),
-      description: new FormControl('')
+      title: new FormControl('', Validators.required),
+      description: new FormControl(''),
+      scheduleDate: new FormControl ('')
     });
 
     this.createTodoForm = new FormGroup({
@@ -34,15 +39,24 @@ export class DashboardComponent implements OnInit {
     if (window.screen.width === 360) {
       this.mobile = true;
     }
-    
+
     this.loadGoals();
     this.thisUser = this.user.getUserObj();
+  }
+
+  public toggleGoalCard(on = true) {
+    this.renderer.setStyle(this.goalCard.nativeElement, 'display', on ? 'flex' : 'none');
+  }
+
+  public toggleSingleGoalCard(on = true) {
+    this.renderer.setStyle(this.singleGoalCard.nativeElement, 'display', on ? 'flex' : 'none');
   }
 
   public createGoal(goalData: any) {
     this.user.createGoal(goalData).subscribe((res: any) => {
       this.goals.unshift(res.data);
       this.createGoalForm.reset();
+      this.toggleGoalCard(false);
     }, err => {
       this.utils.showToast({ title: err, type: 'error' });
     });
@@ -50,8 +64,22 @@ export class DashboardComponent implements OnInit {
 
   public createTodo(todoData: any) {
     this.user.createTodo(this.goal._id, todoData).subscribe((res: any) => {
-      this.goal.todos.push(res.data);
+      this.goal.todos.unshift(res.data);
       this.createTodoForm.reset();
+    }, err => {
+      this.utils.showToast({ title: err, type: 'error' });
+    });
+  }
+
+  public deleteTodo(todo: any) {
+    this.user.removeTodo(todo._id).subscribe((res: any) => {
+      const index = this.goal.todos.findIndex((todoObj: any) => todoObj._id === todo._id);
+      this.goal.todos.splice(index, 1);
+      this.utils.showToast({
+        title: 'Deleted!',
+        message: 'To-do item has been removed.',
+        type: 'success'
+      });
     }, err => {
       this.utils.showToast({ title: err, type: 'error' });
     });
@@ -70,6 +98,7 @@ export class DashboardComponent implements OnInit {
     this.user.getSingleGoal(goal._id).subscribe((res: any) => {
       this.goal = this.formatGoal(res.data, false);
       this.goal.progress = goal.progress;
+      this.toggleSingleGoalCard();
     }, err => {
       this.utils.showToast({ title: err, type: 'error' });
     });
@@ -108,6 +137,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public async editGoal(goal: any) {
+    const formattedScheduleDate = this.parseScheduleDate(goal.scheduleDate);
     const { value: formValues } = await swal.fire({
       title: 'Edit goal',
       html:
@@ -120,7 +150,12 @@ export class DashboardComponent implements OnInit {
           <label for="goal-description-input">Description</label>
           <input type="text" class="form-control" value="${goal.description || ''}"
           id="goal-description-input" placeholder="What is your goal about?" autocomplete='no'>
-        </div>`,
+        </div>
+        <div class="form-group">
+          <label for="goal-scheduleDate-input">Schedule a Date</label>
+          <input type="date" [min]="today" class="form-control" value="${formattedScheduleDate || '2019-01-01'}" id="goal-scheduleDate-input">
+        </div>
+        `,
       focusConfirm: false,
       showLoaderOnConfirm: true,
       confirmButtonColor: 'var(--primary)',
@@ -129,14 +164,15 @@ export class DashboardComponent implements OnInit {
           // tslint:disable-next-line: no-string-literal
           title: document.getElementById('goal-title-input')['value'],
           // tslint:disable-next-line: no-string-literal
-          description: document.getElementById('goal-description-input')['value']
+          description: document.getElementById('goal-description-input')['value'],
+          scheduleDate: document.getElementById('goal-scheduleDate-input')['value']
         };
       }
     });
 
     if (formValues) {
       this.user.updateGoal(goal._id, formValues).subscribe((res: any) => {
-        this.utils.showToast({ title: 'Successfuly updated goal!', type: 'success' });
+        this.utils.showToast({ title: 'Successfully updated goal!', type: 'success' });
         res.data.progress = goal.progress;
         res.data.meta = goal.meta;
         this.goals = this.goals.map(goalObj => (goalObj._id === res.data._id) ? this.formatGoal(res.data) : goalObj)
@@ -188,7 +224,7 @@ export class DashboardComponent implements OnInit {
 
   public markTodo(todo: any) {
     this.user.markTodo(todo._id, !todo.isComplete).subscribe((res: any) => {
-      this.utils.showToast({ title: `Marked todo as ${todo.isComplete ? 'undone 😞' : 'done 😊'}`, type: 'success' });
+      this.utils.showToast({ title: `Marked to-do as ${todo.isComplete ? 'undone 😞' : 'done 😊'}`, type: 'success' });
       this.goal.todos = this.goal.todos.map((todoObj: any) => (todoObj._id === res.data._id) ? res.data : todoObj);
       const meta = {
         totalTodos: { value: this.goal.todos.length },
@@ -231,5 +267,14 @@ export class DashboardComponent implements OnInit {
     b = new Date(b.updatedAt);
     a = new Date(a.updatedAt);
     return b - a;
+  }
+
+  private parseScheduleDate(scheduleDate: string) {
+    const d = new Date(scheduleDate);
+    return `${d.getFullYear()}-${d.getMonth() < 10 ? '0'+d.getMonth() : d.getMonth() }-${d.getDate() < 10 ? '0'+d.getDate() : d.getDate()}`
+  };
+  
+  private finishCount() {
+    document.getElementById("countdown").innerHTML = "In progress";
   }
 }
