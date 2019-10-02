@@ -130,6 +130,7 @@ i.add {
 countdown-timer {
   float: right;
   outline: none;
+  font-size: 16px;
 }
 
 .action-icon {
@@ -138,10 +139,6 @@ countdown-timer {
 
 .material-icons.md-20 { font-size: 20px; }
 .material-icons.md-28 { font-size: 28px; }
-
-input[type="date"]:before {
-  content:attr(placeholder);
-}
 
 
 /***    SCROLLBAR     ***/
