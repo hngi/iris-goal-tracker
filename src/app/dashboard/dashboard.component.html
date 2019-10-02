@@ -125,7 +125,7 @@
             <div class="card text-center text-warning p-2 border-0">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                  <div class="h5 mb-0 font-weight-bold mb-1">{{ getGoalsMetric(false) }}</div>
+                  <div class="h5 mb-0 font-weight-bold mb-1">{{ goals.length - getGoalsMetric() }}</div>
                   <div class="text-xs font-weight-bold">Pending Goals</div>
                 </div>
               </div>
@@ -200,12 +200,12 @@
               <small class="text-gray-800">{{ goal.description }}</small>
               <div class="text-xs font-weight-bold text-primary text-gray-800 mb-4">
                 <h6 class="d-inline" style="font-weight: bold">{{ goal.progress || '0' }}% complete</h6>
-                <countdown-timer class="d-inline text-gray-800" [end]="goal.scheduleDate"></countdown-timer>
+                <countdown-timer id="countdown" class="d-inline text-gray-800" [end]="goal.scheduleDate" (zeroTrigger)="finishCount()" *ngIf="goal.scheduleDate"></countdown-timer>
               </div>
 
               <form [formGroup]="createTodoForm" (ngSubmit)="createTodo(createTodoForm.value)">
                 <div class="input-group">
-                  <input type="text" formControlName="title" class="form-control" placeholder="Add new todo item"
+                  <input type="text" formControlName="title" class="form-control" placeholder="Add new to-do item"
                     aria-label="" aria-describedby="basic-addon1">
                   <div class="input-group-append">
                     <button class="btn btn-primary" style="height: calc(1.5em + 0.75rem + 2px);" type="submit">
@@ -218,7 +218,7 @@
               <ul class="list-group mt-4 scrollable-todo">
                 <li class="list-group-item animated flipInX todo" *ngFor="let todo of goal.todos">
                   <!-- <div class="d-flex w-100"> -->
-                  <input type="checkbox" [checked]="todo.isComplete" (click)="markTodo(todo)"
+                  <input type="checkbox" id="checkTodo" [checked]="todo.isComplete" (click)="markTodo(todo)"
                     class="checkbox d-inline-block mr-2">
                   <div class="d-inline-block h-100" style="width: 90%;" [ngClass]="{'strikethrough': todo.isComplete }">
                     {{ todo.title }}

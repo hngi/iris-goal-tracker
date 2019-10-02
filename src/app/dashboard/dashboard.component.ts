@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
   createTodoForm: FormGroup;
 
   thisUser: any;
- 
   scheduleDate = new Date('yyyy/mm/dd').toISOString;
   goal: any;
   mobile: boolean;
@@ -55,7 +54,6 @@ export class DashboardComponent implements OnInit {
 
   public createGoal(goalData: any) {
     this.user.createGoal(goalData).subscribe((res: any) => {
-      console.log(goalData);
       this.goals.unshift(res.data);
       this.createGoalForm.reset();
       this.toggleGoalCard(false);
@@ -79,7 +77,7 @@ export class DashboardComponent implements OnInit {
       this.goal.todos.splice(index, 1);
       this.utils.showToast({
         title: 'Deleted!',
-        message: 'Todo item has been removed.',
+        message: 'To-do item has been removed.',
         type: 'success'
       });
     }, err => {
@@ -155,7 +153,7 @@ export class DashboardComponent implements OnInit {
         </div>
         <div class="form-group">
           <label for="goal-scheduleDate-input">Schedule a Date</label>
-          <input type="date" class="form-control" value="${formattedScheduleDate || '2019-01-01'}" id="goal-scheduleDate-input" placeholder="Intended date to start">
+          <input type="date" [min]="today" class="form-control" value="${formattedScheduleDate || '2019-01-01'}" id="goal-scheduleDate-input">
         </div>
         `,
       focusConfirm: false,
@@ -163,7 +161,6 @@ export class DashboardComponent implements OnInit {
       confirmButtonColor: 'var(--primary)',
       preConfirm: () => {
         return {
-          console: console.log(formattedScheduleDate),
           // tslint:disable-next-line: no-string-literal
           title: document.getElementById('goal-title-input')['value'],
           // tslint:disable-next-line: no-string-literal
@@ -227,7 +224,7 @@ export class DashboardComponent implements OnInit {
 
   public markTodo(todo: any) {
     this.user.markTodo(todo._id, !todo.isComplete).subscribe((res: any) => {
-      this.utils.showToast({ title: `Marked todo as ${todo.isComplete ? 'undone 😞' : 'done 😊'}`, type: 'success' });
+      this.utils.showToast({ title: `Marked to-do as ${todo.isComplete ? 'undone 😞' : 'done 😊'}`, type: 'success' });
       this.goal.todos = this.goal.todos.map((todoObj: any) => (todoObj._id === res.data._id) ? res.data : todoObj);
       const meta = {
         totalTodos: { value: this.goal.todos.length },
@@ -243,7 +240,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public getGoalsMetric(completed = true) {
-    return this.goals.filter(goal => goal.isbComplete === completed).length;
+    return this.goals.filter(goal => goal.isComplete === completed).length;
   }
 
   private getGoalProgress(goal: any) {
@@ -276,4 +273,8 @@ export class DashboardComponent implements OnInit {
     const d = new Date(scheduleDate);
     return `${d.getFullYear()}-${d.getMonth() < 10 ? '0'+d.getMonth() : d.getMonth() }-${d.getDate() < 10 ? '0'+d.getDate() : d.getDate()}`
   };
+  
+  private finishCount() {
+    document.getElementById("countdown").innerHTML = "In progress";
+  }
 }

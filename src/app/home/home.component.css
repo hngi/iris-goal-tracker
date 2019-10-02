@@ -57,7 +57,7 @@ nav {
   transition: background-color 0.5s ease-out;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .mobile-padding {
     padding-top: 0;
   }
@@ -66,3 +66,10 @@ nav {
     margin-bottom: 10vh;
   }
 }
+
+@media (min-width: 992px) {
+  .row {
+    margin-top: -6%;
+    padding-bottom: 9%;
+  }
+} 
