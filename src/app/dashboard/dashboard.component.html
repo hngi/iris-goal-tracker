@@ -200,7 +200,7 @@
               <small class="text-gray-800">{{ goal.description }}</small>
               <div class="text-xs font-weight-bold text-primary text-gray-800 mb-4">
                 <h6 class="d-inline" style="font-weight: bold">{{ goal.progress || '0' }}% complete</h6>
-                <countdown-timer class="d-inline" style="float: right" [end]="goal.scheduleDate"></countdown-timer>
+                <countdown-timer class="d-inline text-gray-800" [end]="goal.scheduleDate"></countdown-timer>
               </div>
 
               <form [formGroup]="createTodoForm" (ngSubmit)="createTodo(createTodoForm.value)">
