@@ -25,7 +25,8 @@ export class DashboardComponent implements OnInit {
   constructor(private user: UserService, private utils: UtilService, private renderer: Renderer2) {
     this.createGoalForm = new FormGroup({
       title: new FormControl('', Validators.required),
-      description: new FormControl('')
+      description: new FormControl(''),
+      startDate: new FormControl ('')
     });
 
     this.createTodoForm = new FormGroup({
@@ -147,7 +148,12 @@ export class DashboardComponent implements OnInit {
           <label for="goal-description-input">Description</label>
           <input type="text" class="form-control" value="${goal.description || ''}"
           id="goal-description-input" placeholder="What is your goal about?" autocomplete='no'>
-        </div>`,
+        </div>
+        <div class="form-group">
+          <label for="goal-startDate-input">Schedule a Date</label>
+          <input type="date" class="form-control" value="${goal.startDate}" id="goal-startDate-input" placeholder="Intended date to start">
+        </div>
+        `,
       focusConfirm: false,
       showLoaderOnConfirm: true,
       confirmButtonColor: 'var(--primary)',
@@ -156,7 +162,8 @@ export class DashboardComponent implements OnInit {
           // tslint:disable-next-line: no-string-literal
           title: document.getElementById('goal-title-input')['value'],
           // tslint:disable-next-line: no-string-literal
-          description: document.getElementById('goal-description-input')['value']
+          description: document.getElementById('goal-description-input')['value'],
+          startDate: document.getElementById('goal-startDate-input')['value']
         };
       }
     });
@@ -231,7 +238,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public getGoalsMetric(completed = true) {
-    return this.goals.filter(goal => goal.isComplete === completed).length;
+    return this.goals.filter(goal => goal.isbComplete === completed).length;
   }
 
   private getGoalProgress(goal: any) {

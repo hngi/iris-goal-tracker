@@ -80,7 +80,7 @@
         </div>
       </div>
       <!-- Add a new goal card -->
-      <div #newGoalCard class="card new-goal animated fadeInUp faster d-md-block border-0 shadow br-10 py-2 bg-primary">
+      <div #newGoalCard class="card new-goal animated fadeInUp faster d-md-block border-0 shadow br-10 py-1 bg-primary">
         <small (click)="toggleGoalCard(false)" class="d-md-none d-lg-none d-xl-none text-white text-right pr-3"> <i
             class="material-icons">close</i></small>
         <div class="card-body flex-grow-0">
@@ -92,7 +92,11 @@
             </div>
             <div class="form-group">
               <textarea formControlName="description" class="form-control form-control-user" name="" id="" cols="5"
-                rows="5" placeholder="Goal description"></textarea>
+                rows="3" placeholder="Goal description"></textarea>
+            </div>
+            <div class="form-group">
+              <input type="date" formControlName="startDate" placeholder="Schedule a Date (Optional)"
+                class="form-control form-control-user">
             </div>
             <div class="text-center">
               <button type="submit" [disabled]="!createGoalForm.valid" class="btn btn-outline-light">Add</button>
@@ -156,7 +160,8 @@
                     <small class="material-icons md-20 text-danger" (click)="deleteGoal(goal)">close</small>
                   </span>
                 </div>
-                <small class="mb-2" *ngIf="goal.description">{{ goal.description }}</small>
+                <small class="mb-2 d-inline" *ngIf="goal.description">{{ goal.description }}</small>
+                <small class="mb-2 d-inline" *ngIf="goal.startDate">{{ goal.startDate }}</small>
                 <div class="progress mt-2">
                   <div class="progress-bar" role="progressbar" [ngStyle]="{ width: goal.progress+'%' }"
                     aria-valuemin="0" aria-valuemax="100"
