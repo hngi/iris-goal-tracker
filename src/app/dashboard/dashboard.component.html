@@ -95,7 +95,7 @@
                 rows="3" placeholder="Goal description"></textarea>
             </div>
             <div class="form-group">
-              <input type="date" formControlName="startDate" placeholder="Schedule a Date (Optional)"
+              <input type="date" [min]="today" formControlName="scheduleDate" placeholder="Schedule Date (Optional)"
                 class="form-control form-control-user">
             </div>
             <div class="text-center">
@@ -161,7 +161,7 @@
                   </span>
                 </div>
                 <small class="mb-2 d-inline" *ngIf="goal.description">{{ goal.description }}</small>
-                <small class="mb-2 d-inline" *ngIf="goal.startDate">{{ goal.startDate }}</small>
+                <small *ngIf="goal.description" style="float: right">{{ goal.scheduleDate | date:'yyyy-MM-dd' }}</small>
                 <div class="progress mt-2">
                   <div class="progress-bar" role="progressbar" [ngStyle]="{ width: goal.progress+'%' }"
                     aria-valuemin="0" aria-valuemax="100"
@@ -199,7 +199,8 @@
               <h4>{{ goal.title }}</h4>
               <small class="text-gray-800">{{ goal.description }}</small>
               <div class="text-xs font-weight-bold text-primary text-gray-800 mb-4">
-                <h6 style="font-weight: bold">{{ goal.progress || '0' }}% complete</h6>
+                <h6 class="d-inline" style="font-weight: bold">{{ goal.progress || '0' }}% complete</h6>
+                <countdown-timer class="d-inline" style="float: right" [end]="goal.scheduleDate"></countdown-timer>
               </div>
 
               <form [formGroup]="createTodoForm" (ngSubmit)="createTodo(createTodoForm.value)">

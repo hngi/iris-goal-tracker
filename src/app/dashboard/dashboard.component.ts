@@ -15,9 +15,11 @@ export class DashboardComponent implements OnInit {
   createTodoForm: FormGroup;
 
   thisUser: any;
-
+ 
+  scheduleDate = new Date('yyyy/mm/dd').toISOString;
   goal: any;
   mobile: boolean;
+  today = new Date().toJSON().split('T')[0];
 
   @ViewChild('newGoalCard', { static: false }) goalCard: ElementRef;
   @ViewChild('singleGoalCard', { static: false }) singleGoalCard: ElementRef;
@@ -26,7 +28,7 @@ export class DashboardComponent implements OnInit {
     this.createGoalForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl(''),
-      startDate: new FormControl ('')
+      scheduleDate: new FormControl ('')
     });
 
     this.createTodoForm = new FormGroup({
@@ -53,6 +55,7 @@ export class DashboardComponent implements OnInit {
 
   public createGoal(goalData: any) {
     this.user.createGoal(goalData).subscribe((res: any) => {
+      console.log(goalData);
       this.goals.unshift(res.data);
       this.createGoalForm.reset();
       this.toggleGoalCard(false);
@@ -136,6 +139,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public async editGoal(goal: any) {
+    const formattedScheduleDate = this.parseScheduleDate(goal.scheduleDate);
     const { value: formValues } = await swal.fire({
       title: 'Edit goal',
       html:
@@ -150,8 +154,8 @@ export class DashboardComponent implements OnInit {
           id="goal-description-input" placeholder="What is your goal about?" autocomplete='no'>
         </div>
         <div class="form-group">
-          <label for="goal-startDate-input">Schedule a Date</label>
-          <input type="date" class="form-control" value="${goal.startDate}" id="goal-startDate-input" placeholder="Intended date to start">
+          <label for="goal-scheduleDate-input">Schedule a Date</label>
+          <input type="date" class="form-control" value="${formattedScheduleDate || '2019-01-01'}" id="goal-scheduleDate-input" placeholder="Intended date to start">
         </div>
         `,
       focusConfirm: false,
@@ -159,18 +163,19 @@ export class DashboardComponent implements OnInit {
       confirmButtonColor: 'var(--primary)',
       preConfirm: () => {
         return {
+          console: console.log(formattedScheduleDate),
           // tslint:disable-next-line: no-string-literal
           title: document.getElementById('goal-title-input')['value'],
           // tslint:disable-next-line: no-string-literal
           description: document.getElementById('goal-description-input')['value'],
-          startDate: document.getElementById('goal-startDate-input')['value']
+          scheduleDate: document.getElementById('goal-scheduleDate-input')['value']
         };
       }
     });
 
     if (formValues) {
       this.user.updateGoal(goal._id, formValues).subscribe((res: any) => {
-        this.utils.showToast({ title: 'Successfuly updated goal!', type: 'success' });
+        this.utils.showToast({ title: 'Successfully updated goal!', type: 'success' });
         res.data.progress = goal.progress;
         res.data.meta = goal.meta;
         this.goals = this.goals.map(goalObj => (goalObj._id === res.data._id) ? this.formatGoal(res.data) : goalObj)
@@ -266,4 +271,9 @@ export class DashboardComponent implements OnInit {
     a = new Date(a.updatedAt);
     return b - a;
   }
+
+  private parseScheduleDate(scheduleDate: string) {
+    const d = new Date(scheduleDate);
+    return `${d.getFullYear()}-${d.getMonth() < 10 ? '0'+d.getMonth() : d.getMonth() }-${d.getDate() < 10 ? '0'+d.getDate() : d.getDate()}`
+  };
 }

@@ -11,6 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ApiService } from './api.service';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CountdownTimerModule } from 'ngx-countdown-timer';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CountdownTimerModule.forRoot()
   ],
   providers: [ApiService, UserService],
   bootstrap: [AppComponent]
