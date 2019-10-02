@@ -87,16 +87,16 @@
           <h4 class="text-white">Add new goal</h4>
           <form [formGroup]="createGoalForm" (ngSubmit)="createGoal(createGoalForm.value)">
             <div class="form-group">
-              <input type="text" formControlName="title" placeholder="Goal title"
+              <input type="text" formControlName="title" placeholder="Goal Title"
                 class="form-control form-control-user">
             </div>
             <div class="form-group">
               <textarea formControlName="description" class="form-control form-control-user" name="" id="" cols="5"
-                rows="3" placeholder="Goal description"></textarea>
+                rows="3" placeholder="Goal Description"></textarea>
             </div>
             <div class="form-group">
-              <input type="date" [min]="today" formControlName="scheduleDate" placeholder="Schedule Date (Optional)"
-                class="form-control form-control-user">
+              <input class="form-control form-control-user" type="text" [min]="today" formControlName="scheduleDate" 
+                class="form-control" placeholder="Schedule Date (Optional)" onfocus="(this.type='date')"/>
             </div>
             <div class="text-center">
               <button type="submit" [disabled]="!createGoalForm.valid" class="btn btn-outline-light">Add</button>
@@ -200,7 +200,10 @@
               <small class="text-gray-800">{{ goal.description }}</small>
               <div class="text-xs font-weight-bold text-primary text-gray-800 mb-4">
                 <h6 class="d-inline" style="font-weight: bold">{{ goal.progress || '0' }}% complete</h6>
-                <countdown-timer id="countdown" class="d-inline text-gray-800" [end]="goal.scheduleDate" (zeroTrigger)="finishCount()" *ngIf="goal.scheduleDate"></countdown-timer>
+                <countdown-timer id="countdown" class="text-gray-800" [end]="goal.scheduleDate" (zeroTrigger)="finishCount(goal)" *ngIf="goal.scheduleDate"></countdown-timer>
+                <p *ngIf="!goal.scheduleDate || goalScheduleText[goal._id]">
+                  {{ goalScheduleText[goal._id] || "" }}
+                </p>
               </div>
 
               <form [formGroup]="createTodoForm" (ngSubmit)="createTodo(createTodoForm.value)">

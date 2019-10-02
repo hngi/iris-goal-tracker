@@ -153,7 +153,7 @@ export class DashboardComponent implements OnInit {
         </div>
         <div class="form-group">
           <label for="goal-scheduleDate-input">Schedule a Date</label>
-          <input type="date" [min]="today" class="form-control" value="${formattedScheduleDate || '2019-01-01'}" id="goal-scheduleDate-input">
+          <input type="date" [min]="today" class="form-control" value="${formattedScheduleDate || "'2019-01-01'"}" id="goal-scheduleDate-input">
         </div>
         `,
       focusConfirm: false,
@@ -274,7 +274,9 @@ export class DashboardComponent implements OnInit {
     return `${d.getFullYear()}-${d.getMonth() < 10 ? '0'+d.getMonth() : d.getMonth() }-${d.getDate() < 10 ? '0'+d.getDate() : d.getDate()}`
   };
   
-  private finishCount() {
-    document.getElementById("countdown").innerHTML = "In progress";
+  public goalScheduleText: { [key: string]: string } = {}; // an object that will hold the ids of the goals as keys and the corresponding text to display whether or not the goal is in progress
+
+  public finishCount(goal: any) {
+    this.goalScheduleText[goal._id] = "In Progress";
   }
 }
