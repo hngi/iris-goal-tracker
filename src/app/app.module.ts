@@ -12,6 +12,8 @@ import { ApiService } from './api.service';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CountdownTimerModule } from 'ngx-countdown-timer';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { CountdownTimerModule } from 'ngx-countdown-timer';
     HomeComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

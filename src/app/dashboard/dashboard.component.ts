@@ -1,3 +1,6 @@
+// tslint:disable: max-line-length
+// tslint:disable: no-string-literal
+
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -20,6 +23,8 @@ export class DashboardComponent implements OnInit {
   mobile: boolean;
   today = new Date().toJSON().split('T')[0];
 
+  public goalScheduleText: { [key: string]: string } = {};
+
   @ViewChild('newGoalCard', { static: false }) goalCard: ElementRef;
   @ViewChild('singleGoalCard', { static: false }) singleGoalCard: ElementRef;
 
@@ -27,7 +32,7 @@ export class DashboardComponent implements OnInit {
     this.createGoalForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl(''),
-      scheduleDate: new FormControl ('')
+      scheduleDate: new FormControl('')
     });
 
     this.createTodoForm = new FormGroup({
@@ -153,7 +158,7 @@ export class DashboardComponent implements OnInit {
         </div>
         <div class="form-group">
           <label for="goal-scheduleDate-input">Schedule a Date</label>
-          <input type="date" [min]="today" class="form-control" value="${formattedScheduleDate || "'2019-01-01'"}" id="goal-scheduleDate-input">
+          <input type="date" [min]="today" class="form-control" value="${formattedScheduleDate || '\'2019-01-01\''}" id="goal-scheduleDate-input">
         </div>
         `,
       focusConfirm: false,
@@ -161,9 +166,7 @@ export class DashboardComponent implements OnInit {
       confirmButtonColor: 'var(--primary)',
       preConfirm: () => {
         return {
-          // tslint:disable-next-line: no-string-literal
           title: document.getElementById('goal-title-input')['value'],
-          // tslint:disable-next-line: no-string-literal
           description: document.getElementById('goal-description-input')['value'],
           scheduleDate: document.getElementById('goal-scheduleDate-input')['value']
         };
@@ -243,6 +246,10 @@ export class DashboardComponent implements OnInit {
     return this.goals.filter(goal => goal.isComplete === completed).length;
   }
 
+  public finishCount(goal: any) {
+    this.goalScheduleText[goal._id] = 'In Progress';
+  }
+
   private getGoalProgress(goal: any) {
     if (!goal.meta) { return 0; }
     const totalTodos = goal.meta.totalTodos ? goal.meta.totalTodos.value : 0;
@@ -271,12 +278,6 @@ export class DashboardComponent implements OnInit {
 
   private parseScheduleDate(scheduleDate: string) {
     const d = new Date(scheduleDate);
-    return `${d.getFullYear()}-${d.getMonth() < 10 ? '0'+d.getMonth() : d.getMonth() }-${d.getDate() < 10 ? '0'+d.getDate() : d.getDate()}`
-  };
-  
-  public goalScheduleText: { [key: string]: string } = {}; // an object that will hold the ids of the goals as keys and the corresponding text to display whether or not the goal is in progress
-
-  public finishCount(goal: any) {
-    this.goalScheduleText[goal._id] = "In Progress";
+    return `${d.getFullYear()}-${d.getMonth() < 10 ? '0' + d.getMonth() : d.getMonth()}-${d.getDate() < 10 ? '0' + d.getDate() : d.getDate()}`;
   }
 }
