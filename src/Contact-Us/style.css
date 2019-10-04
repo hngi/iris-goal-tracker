@@ -25,22 +25,28 @@ body {
 }
 .labels {
     padding-bottom: 20px;
+    font-weight: bold;
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     
 }
 .input-box, .button {
     height: 30px;
 
 }
+.input-box, .msg-box {
+    margin-top: 10px;
+    
+}
 .input-box, .msg-box, .button {
     width: 300px;
     border-radius: 3px;
 }
 .msg-box {
-    height: 200px;
+    height: 150px;
+    box-shadow: 9px 9px 9px rgba(92, 218, 122, 0.24);
 
 }
 .button {

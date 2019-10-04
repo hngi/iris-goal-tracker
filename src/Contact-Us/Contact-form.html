@@ -10,21 +10,27 @@
 
 <body>
     <div class="contact-form">
-        <h3 class="access-title">How can we help?</h3>
+        <h3 class="access-title">HOW CAN WE HELP?</h3>
         <form action="/send-message" class="msg-form">
             <div class="input-group">
-                <label for="email" class="labels">Name:</label> <br><br>
-                    <input type="text" name="email" class="input-box" placeholder="Name">
+                <label for="name" class="labels">Name:</label> <br>
+                    <input type="text" name="name" id="name" class="input-box" placeholder="Your Name">
                     <br><br>
             </div>
 
             <div class="input-group">
-                <label for="message" class="labels">Your Message:</label> <br><br>
-                    <textarea class="msg-box" placeholder="Enter Your Message Here..." maxlength="250"></textarea>
+                <label for="email" class="labels">E-mail Address:</label> 
+                    <input type="text" name="email" id="email" class="input-box" placeholder="Your E-mail Address">
+                    <br><br>
+            </div>
+
+            <div class="input-group">
+                <label for="message" class="labels">Your Message:</label> <br>
+                    <textarea class="msg-box" id="message" placeholder="Enter Your Message Here..." maxlength="250"></textarea>
             </div>
 
             <div>
-                <button type="submit" class="button" value="send">Send</button>
+                <button type="submit" class="button" id="send-msg" value="send">Send</button>
             </div>
         </form> 
     </div>
