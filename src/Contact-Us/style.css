@@ -1,0 +1,61 @@
+body {
+    background-image: url("backgroundimage.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.contact-form {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 9px 9px 9px rgba(92, 218, 122, 0.24);
+    max-width: 30%;
+    margin: auto;
+    border: none;
+}
+
+.access-title {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    padding-top: 30px;
+    text-align: center;
+    
+}
+.msg-form {
+   text-align: left;
+   margin-left: 50px;
+}
+.labels {
+    padding-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    
+}
+.input-box, .button {
+    height: 30px;
+
+}
+.input-box, .msg-box, .button {
+    width: 300px;
+    border-radius: 3px;
+}
+.msg-box {
+    height: 200px;
+
+}
+.button {
+    margin-bottom: 30px;
+    background-color: #0083FF;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .contact-form {
+        width: 90%;
+        margin-bottom: 40px;
+        margin-top: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+}
