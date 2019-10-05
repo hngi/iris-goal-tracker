@@ -1,5 +1,4 @@
 let quotes = [
-  "Stay focused, go after your dreams and keep moving toward your goals",
   "Why do it later when you can do it now",
   "The way to get started is to quit talking and begin doing - Walt Disney",
   "The Pessimist Sees Difficulty in Every Opportunity. The Optimist sees the opportunity in every difficulty - Winston Churchill",

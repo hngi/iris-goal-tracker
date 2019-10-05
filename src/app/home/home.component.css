@@ -9,7 +9,15 @@
   padding: 0.5rem;
   border-radius: 5px;
   text-align: center;
-  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+#forgot {
+  text-align: center;
+  margin-top: -2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 .mobile-padding {

@@ -37,12 +37,13 @@
     </div>
   </nav>
   <div id="home-body">
-    <div id="displayQuote">
-      <!-- quote goes here-->
-    </div>
     <div class="container">
       <div class="row mobile-padding">
         <div class="col-lg-8  d-lg-block mobile-margin-bottom">
+          <div id="displayQuote" class="animated fadeIn">
+            <!-- quote goes here-->
+            Why do it later when you can do it now
+          </div>
           <h1 class="display-4">Stay focused, go after your dreams and keep moving
             towards your goals.</h1>
           <div class="note d-flex">
@@ -60,6 +61,7 @@
           <app-login *ngSwitchCase="'login'"></app-login>
           <app-register *ngSwitchCase="'register'"></app-register>
           <app-forgot-password *ngSwitchCase="'forgot'"></app-forgot-password>
+          <p id="forgot"><a *ngIf="sign === 'login'" (click)="sign = 'forgot'">Forgot Password?</a></p>
         </div>
       </div>
     </div>

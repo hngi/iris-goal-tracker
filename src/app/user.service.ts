@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UserService {
   isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public passwordReset: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private api: ApiService) {
     this.isLoggedIn.next(Boolean(this.getUserObj()));
@@ -29,6 +30,14 @@ export class UserService {
     return this.api.post('users/verify', { token });
   }
 
+  forgotPassword(formData: any) {
+    return this.api.post('users/forgot-password', formData);
+  }
+
+  resetPassword(formData: any) {
+    return this.api.post('users/reset-password', formData);
+  }
+
   uploadProfileImage(user: string, formData: any) {
     const headers = this.getAuthHeader();
     return this.api.post(`users/uploads/image/${user}`, formData, { headers });
@@ -41,6 +50,14 @@ export class UserService {
 
   getLoggedInStatus() {
     return this.isLoggedIn.asObservable();
+  }
+
+  getPasswordResetStatus() {
+    return this.passwordReset.asObservable();
+  }
+
+  triggerPasswordResetComplete() {
+    this.passwordReset.next(true);
   }
 
   saveUser(user: any, triggerLoggedIn: boolean = false) {

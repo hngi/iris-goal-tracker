@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from './user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 declare const quoteGenerator: any;
 
@@ -11,7 +11,7 @@ declare const quoteGenerator: any;
 })
 
 export class AppComponent {
-  constructor(private user: UserService, private router: Router) {
+  constructor(private user: UserService, private router: Router, private route: ActivatedRoute) {
     this.user.getLoggedInStatus().subscribe(isLoggedIn => {
       if (isLoggedIn) {
         this.router.navigate(['/dashboard']);
@@ -21,7 +21,7 @@ export class AppComponent {
     });
   }
 
-  onload(){
+  onload() {
     quoteGenerator();
   }
 }
