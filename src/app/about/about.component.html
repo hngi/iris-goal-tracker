@@ -1,4 +1,31 @@
 <section id="about">
+  <nav class="navbar navbar-dark navbar-expand-md navbar-toggleable-sm">
+    <div class="container">
+      <a class="navbar-brand">
+        <img src="https://res.cloudinary.com/iolarav/image/upload/v1569355074/iris-logo_no5zph.png" width="30"
+          height="30" class="d-inline-block align-top" alt="">
+        GOAL TRACKER
+      </a>
+      <button mat-ripple class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="btn active" routerLinkActive="active">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn" [routerLink]="['/team']">Our Team</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary" [routerLink]="['/']">Get Started</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
 
     <header class="section-header text-center mb-5 pb-2">
@@ -14,7 +41,7 @@
         <div class="about-col">
           <div class="img">
             <img src="img/about-mission.webp" alt="" class="img-fluid">
-            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+            <div class="icon"><i class="material-icons">speed</i></div>
           </div>
           <h2 class="title"><a href="#">Our Mission</a></h2>
           <p class="text-center">
@@ -27,7 +54,7 @@
         <div class="about-col">
           <div class="img">
             <img src="img/about-plan.webp" alt="" class="img-fluid">
-            <div class="icon"><i class="ion-ios-list-outline"></i></div>
+            <div class="icon"><i class="material-icons">list</i></div>
           </div>
           <h2 class="title"><a href="#">Our Plan</a></h2>
           <p class="text-center">
@@ -41,7 +68,7 @@
         <div class="about-col">
           <div class="img">
             <img src="img/about-vision.webp" alt="" class="img-fluid">
-            <div class="icon"><i class="ion-ios-eye-outline"></i></div>
+            <div class="icon"><i class="material-icons">remove_red_eye</i></div>
           </div>
           <h2 class="title"><a href="#">Our Vision</a></h2>
           <p class="text-center">
@@ -63,6 +90,6 @@
     <h3>Having Problems keeping track on your goals?</h3>
     <p class="text-center">
       With Iris Goal Tracker you can set and track your goals, track time, manage task, and lots more. </p>
-    <a class="cta-btn" [routerLink]="['/dashboard']">Get Started</a>
+    <a class="cta-btn" [routerLink]="['/home']">Get Started</a>
   </div>
 </section><!-- #call-to-action -->
