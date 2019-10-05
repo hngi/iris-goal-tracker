@@ -76,7 +76,7 @@ img {
     line-height: 1.2;
     color: #212529;
     text-align: left;
-    padding-top: 30px;
+    padding-top: 20px;
     margin-left: 50px;
 
 }
@@ -106,7 +106,7 @@ img {
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 9px 9px 9px rgba(92, 218, 122, 0.24);
     max-width: 30%;
-    margin: 70px auto;
+    margin: 40px auto;
     border: none;
 }
 
@@ -122,20 +122,16 @@ img {
    margin-left: 50px;
 }
 .labels {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     font-weight: bold;
 }
 
-.input-group {
-    margin-bottom: 10px;
-    
-}
 .input-box, .button {
-    height: 30px;
+    height: 20px;
 
 }
-.input-box, .msg-box {
-    margin-top: 10px;
+.input-box, .msg-box{
+    margin-top: 5px;
     
 }
 .input-box, .msg-box, .button {
@@ -148,9 +144,12 @@ img {
 
 }
 #send-msg {
+    color: #ffffff;
+    background-color: #007bff;
     margin-bottom: 30px;
-    line-height: 14px;
-    margin-left: 7rem;
+    height: 30px;
+    margin-top: 10px;
+   
 }
 
 @media (max-width: 768px) {
