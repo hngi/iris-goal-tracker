@@ -8,7 +8,7 @@ import { UtilService } from './util.service';
  */
 @Injectable()
 export class ApiService {
-  url: string;
+  public url: string;
 
   constructor(public http: HttpClient, private utils: UtilService) {
     this.url = 'https://iris-goal-tracker-api.herokuapp.com/api';

@@ -2,7 +2,6 @@ main {
   font-family: 'Roboto', sans-serif;
   background-color: #F5F5F5;
   scroll-behavior: smooth;
-  height: 100vh;
   width: 100%;
 }
 
@@ -12,7 +11,7 @@ main {
   margin-left: 1em;
   margin-top: 1em;
 }
-
+/* 
 .header {
   margin-top: 0em;
   padding-bottom: 4em;
@@ -27,7 +26,7 @@ main {
   padding-left: .8em;
   letter-spacing: 0.1em;
   padding-top: 0.5em;
-}
+} */
 
 .team-note {
   color: grey;
@@ -56,6 +55,7 @@ hr {
 
 .team img {
   margin-top: .8em;
+  margin-bottom: .8em;
 }
 
 h5 {
@@ -68,20 +68,16 @@ h5 {
 .team {
   background-color: white;
   padding: 2.5em 3em;
-  box-shadow: 0px 18px 16px -6px rgba(0, 0, 0, 0.4);
   border-radius: .5em;
-  height: 13em;
-  width: 9.7em;
+  margin-top: 1rem;
   line-height: 0.5em;
   text-align: center;
   cursor: pointer;
-  transition: 1s ease-in;
+  transition: .3s ease-in;
 }
 
 .team:hover {
-  width: 11em;
-  height: 14em;
-
+  box-shadow: 0px 18px 16px -6px rgba(0, 0, 0, 0.3);
 }
 
 .teamlist {

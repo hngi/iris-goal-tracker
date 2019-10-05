@@ -23,12 +23,14 @@ export class DashboardComponent implements OnInit {
   mobile: boolean;
   today = new Date().toJSON().split('T')[0];
 
+  imageData: File;
+
   public goalScheduleText: { [key: string]: string } = {};
 
   @ViewChild('newGoalCard', { static: false }) goalCard: ElementRef;
   @ViewChild('singleGoalCard', { static: false }) singleGoalCard: ElementRef;
 
-  constructor(private user: UserService, private utils: UtilService, private renderer: Renderer2) {
+  constructor(public user: UserService, private utils: UtilService, private renderer: Renderer2) {
     this.createGoalForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl(''),
@@ -248,6 +250,20 @@ export class DashboardComponent implements OnInit {
 
   public finishCount(goal: any) {
     this.goalScheduleText[goal._id] = 'In Progress';
+  }
+
+  public uploadImage() {
+    const formData = new FormData();
+    formData.append('data', this.imageData);
+    formData.append('name', 'profile-image-' + Date.now());
+
+    this.user.uploadProfileImage(this.thisUser._id, formData).subscribe((res: any) => {
+      this.utils.showToast({ title: 'Successfuly updated your profile image', type: 'success' });
+      this.thisUser = res.data;
+      this.user.saveUser(this.thisUser);
+    }, err => {
+      this.utils.showToast({ title: err, type: 'error' });
+    });
   }
 
   private getGoalProgress(goal: any) {

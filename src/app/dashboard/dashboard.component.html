@@ -56,13 +56,24 @@
           <div class="row no-gutters align-items-center">
             <div class="col text-center">
               <div class="d-flex w-100 justify-content-between align-items-center mb-3">
-                <div class="d-flex flex-row align-items-center">
+                <div class="d-flex flex-row align-items-center profile-box" style="position: relative;">
                   <div class="avatar mr-3">
-                    <div class="initials-avatar rounded-circle"
+                    <div *ngIf="!thisUser.image || !thisUser.image.data" class="initials-avatar rounded-circle"
                       [ngStyle]="{ backgroundColor: getAvatar(thisUser.name).color }">
                       {{ getAvatar(thisUser.name).initials }}
                     </div>
+                    <div *ngIf="thisUser.image && thisUser.image.data" class="avatar rounded-circle">
+                      <img [src]="user.apiUrlBase+'/'+thisUser.image.data">
+                    </div>
                   </div>
+                  <form>
+                    <label for="image">
+                      <i class="material-icons edit-image" title="Edit Profile Image" data-toggle="tooltip"
+                        data-placement="top">edit</i>
+                    </label>
+                    <input style="display: none" [(ngModel)]="imageData" (onchange)="uploadImage()" type="file"
+                      id="image" name="image" />
+                  </form>
                   <h5>{{ thisUser.name }}</h5>
                 </div>
                 <small (click)="editUser()"> <i class="material-icons">edit</i></small>
@@ -95,8 +106,8 @@
                 rows="3" placeholder="Goal Description"></textarea>
             </div>
             <div class="form-group">
-              <input class="form-control form-control-user" type="text" [min]="today" formControlName="scheduleDate" 
-                class="form-control" placeholder="Schedule Date (Optional)" onfocus="(this.type='date')"/>
+              <input class="form-control form-control-user" type="text" [min]="today" formControlName="scheduleDate"
+                class="form-control" placeholder="Schedule Date (Optional)" onfocus="(this.type='date')" />
             </div>
             <div class="text-center">
               <button type="submit" [disabled]="!createGoalForm.valid" class="btn btn-outline-light">Add</button>
@@ -191,16 +202,18 @@
     <section>
       <div #singleGoalCard class="card single-goal d-md-block border-0 shadow py-2 todo-card">
         <div class="card-body" *ngIf="goal">
-          <small (click)="toggleSingleGoalCard(false)" class="d-md-none d-lg-none d-xl-none text-dark text-right float-right pr-3">
+          <small (click)="toggleSingleGoalCard(false)"
+            class="d-md-none d-lg-none d-xl-none text-dark text-right float-right pr-3">
             <i class="material-icons">close</i></small>
-            <div class="clearfix"></div>
+          <div class="clearfix"></div>
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <h4>{{ goal.title }}</h4>
               <small class="text-gray-800">{{ goal.description }}</small>
               <div class="text-xs font-weight-bold text-primary text-gray-800 mb-4">
                 <h6 class="d-inline" style="font-weight: bold">{{ goal.progress || '0' }}% complete</h6>
-                <countdown-timer id="countdown" class="text-gray-800" [end]="goal.scheduleDate" (zeroTrigger)="finishCount(goal)" *ngIf="goal.scheduleDate"></countdown-timer>
+                <countdown-timer id="countdown" class="text-gray-800" [end]="goal.scheduleDate"
+                  (zeroTrigger)="finishCount(goal)" *ngIf="goal.scheduleDate"></countdown-timer>
                 <p *ngIf="!goal.scheduleDate || goalScheduleText[goal._id]">
                   {{ goalScheduleText[goal._id] || "" }}
                 </p>

@@ -20,6 +20,32 @@ section {
   position: relative;
   height: 3rem;
   width: 3rem;
+  overflow: hidden;
+}
+
+.avatar img {
+  height: 100%;
+}
+
+.profile-box .edit-image {
+  cursor: pointer;
+  color: var(--primary);
+  font-size: 1rem;
+  position: absolute;
+  height: 1.2rem;
+  width: 1.2rem;
+  background-color: #fff;
+  border-radius: 50%;
+  display: none;
+  padding: 0.1rem;
+  justify-content: center;
+  align-items: center;
+  bottom: 0px;
+  left: 0px;
+}
+
+.profile-box:hover .edit-image {
+  display: flex;
 }
 
 .dropdown-menu {
@@ -137,8 +163,13 @@ countdown-timer {
   cursor: pointer;
 }
 
-.material-icons.md-20 { font-size: 20px; }
-.material-icons.md-28 { font-size: 28px; }
+.material-icons.md-20 {
+  font-size: 20px;
+}
+
+.material-icons.md-28 {
+  font-size: 28px;
+}
 
 
 /***    SCROLLBAR     ***/
@@ -190,5 +221,9 @@ countdown-timer {
   .todo .action-buttons,
   .goal .action-buttons {
     display: block !important;
+  }
+
+  .avatar+.edit-image {
+    display: flex !important;
   }
 }
