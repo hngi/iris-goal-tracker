@@ -2,6 +2,16 @@
   padding-top: 80px;
 }
 
+#displayQuote {
+  width: fit-content;
+  background: var(--primary);
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+  margin: 0 auto;
+}
+
 .mobile-padding {
   padding-top: 62px;
 }
@@ -36,11 +46,14 @@ nav {
   outline: none;
 }
 
-.login-trigger, .page-trigger {
+.login-trigger,
+.page-trigger {
   margin-right: 15px;
 }
 
-.login-trigger, .register-trigger, .page-trigger {
+.login-trigger,
+.register-trigger,
+.page-trigger {
   color: black;
   padding: 10px;
 }
@@ -67,8 +80,8 @@ nav {
   height: 400px;
 }
 
-.tour-link {   
-  cursor: pointer;  
+.tour-link {
+  cursor: pointer;
 }
 
 button.close {
@@ -80,7 +93,7 @@ button.close {
     padding-top: 0;
   }
 
-  .mobile-margin-bottom{
+  .mobile-margin-bottom {
     margin-bottom: 10vh;
   }
 }

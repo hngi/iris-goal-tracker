@@ -30,7 +30,8 @@ export class UserService {
   }
 
   uploadProfileImage(user: string, formData: any) {
-    return this.api.post(`users/uploads/image/${user}`, formData);
+    const headers = this.getAuthHeader();
+    return this.api.post(`users/uploads/image/${user}`, formData, { headers });
   }
 
   logout() {
@@ -47,6 +48,10 @@ export class UserService {
       this.isLoggedIn.next(true);
     }
     return localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  handleContact(data: any) {
+    return this.api.post('feedbacks', data);
   }
 
   getUserObj() {

@@ -11,8 +11,8 @@ export class ApiService {
   public url: string;
 
   constructor(public http: HttpClient, private utils: UtilService) {
-    this.url = 'https://iris-goal-tracker-api.herokuapp.com/api';
-    // this.url = 'http://localhost:3000/api';
+    // this.url = 'https://iris-goal-tracker-api.herokuapp.com/api';
+    this.url = 'http://localhost:3000/api';
   }
 
   get(endpoint: string, params?: any, reqOpts?: any) {

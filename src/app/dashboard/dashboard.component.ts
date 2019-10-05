@@ -252,18 +252,19 @@ export class DashboardComponent implements OnInit {
     this.goalScheduleText[goal._id] = 'In Progress';
   }
 
-  public uploadImage() {
-    const formData = new FormData();
-    formData.append('data', this.imageData);
-    formData.append('name', 'profile-image-' + Date.now());
+  public async uploadImage(event: any) {
+    if (event.target.files.length > 0) {
+      console.log('uploading profile image...');
+      const data = await this.utils.toBase64(event.target.files[0]);
 
-    this.user.uploadProfileImage(this.thisUser._id, formData).subscribe((res: any) => {
-      this.utils.showToast({ title: 'Successfuly updated your profile image', type: 'success' });
-      this.thisUser = res.data;
-      this.user.saveUser(this.thisUser);
-    }, err => {
-      this.utils.showToast({ title: err, type: 'error' });
-    });
+      this.user.uploadProfileImage(this.thisUser._id, { data, name: 'profile-image-' + Date.now() }).subscribe((res: any) => {
+        this.utils.showToast({ title: 'Successfuly updated your profile image', type: 'success' });
+        this.thisUser = res.data;
+        this.user.saveUser(this.thisUser);
+      }, err => {
+        this.utils.showToast({ title: err, type: 'error' });
+      });
+    }
   }
 
   private getGoalProgress(goal: any) {

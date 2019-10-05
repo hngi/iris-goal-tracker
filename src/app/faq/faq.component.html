@@ -1,174 +1,114 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <title>FAQ-page</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-    <link rel="stylesheet" href="faq.css">
-   </head>
-    <body>
-    <div class="head">
-        <header>
-            <figure><img src="" alt="iris-logo"></figure>
-            <nav>
-                <ul>
-                    <li class="nav-list"><a href="#">Sign In</a></li>
-                    <li class="nav-list"><a href="#">Sign Up</a></li>
-                    <li class="nav-list"><a href="faq.html">FAQ</a></li>
-                </ul>
-            </nav>
-        </header>
-    </div>
+<section class="wrapper wrapper-full-page bg-img overlay">
+  <nav class="navbar navbar-dark navbar-expand-md navbar-toggleable-sm">
     <div class="container">
-        <h2>FAQs</h2>
-        <div class="empty"></div>
+      <a class="navbar-brand">
+        <img src="https://res.cloudinary.com/iolarav/image/upload/v1569355074/iris-logo_no5zph.png" width="30"
+          height="30" class="d-inline-block align-top" alt="">
+        GOAL TRACKER
+      </a>
+      <button mat-ripple class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="btn active" routerLinkActive="active">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn" [routerLink]="['/contact']">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn" [routerLink]="['/team']">Our Team</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn" [routerLink]="['/faq']">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary" [routerLink]="['/']">Get Started</a>
+          </li>
+        </ul>
+      </div>
     </div>
-     
-      <div class="container">
-          <div class="faq-questions">   
-            <input type="checkbox" id="toggle1" class="toggle"/>
-            <label class="title" for="toggle1">
-              <h3>Is it free?</h3>
-            </label> 
-              <div class="faq-answer">
-                <p> Yes, it is free. </p>
-              </div> 
-          </div>
-        
-        <div class="faq-questions">   
-            <input type="checkbox" id="toggle2" class="toggle"/>
-            <label class="title" for="toggle2">
-              <h3>Can I view my goals offline?</h3>
-            </label> 
-              <div class="faq-answer">
-                <p> No, currently goals cannot be viewed offline. </p>
-              </div> 
-          </div>
-        
-        <div class="faq-questions">   
-            <input type="checkbox" id="toggle3" class="toggle"/>
-            <label class="title" for="toggle3">
-              <h3>Where is my goal stored?</h3>
-            </label> 
-              <div class="faq-answer">
-                <p> Your goals are stored  on our secured cloud database. </p>
-              </div> 
-          </div>
-        
-        <div class="faq-questions">   
-            <input type="checkbox" id="toggle4" class="toggle"/>
-            <label class="title" for="toggle4">
-              <h3>How do you use my information?</h3>
-            </label> 
-              <div class="faq-answer">
-                <p> Your information are protected by our privacy policy and are not in anyway considered public document. </p>
-              </div> 
-          </div>
-        
-        <div class="faq-questions">   
-            <input type="checkbox" id="toggle5" class="toggle"/>
-            <label class="title" for="toggle5">
-              <h3>Can I get the goal tracker on playstore or app store?</h3>
-            </label> 
-              <div class="faq-answer">
-                <p> No, goal tracker can only be used on the web.</p>
-              </div> 
-          </div>
-        
-        <div class="faq-questions">   
-            <input type="checkbox" id="toggle6" class="toggle"/>
-            <label class="title" for="toggle6">
-              <h3>Can I set time tracker for my goal?</h3>
-            </label> 
-              <div class="faq-answer">
-                <p> This feature does not exist yet. </p>
-              </div> 
-          </div>
-        
+  </nav>
 
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        <!--<div class="faq-questions">
-                <ol>
-                    <li class="question2"><a href="#answer2"><h3>Can I view my goals offline?</h3></a></li>
-                <div class="faq-answer" id="answer2">No, currently goals cannot be viewed offline.</div>
-                </ol>
-            </div>
+  <div class="sub-container container">
+    <h2>FAQs</h2>
+    <div class="empty"></div>
+  </div>
 
-            <div class="faq-questions">
-                    <ol>
-                        <li class="question3"><a href="#answer3"><h3>Where is my goal stored?</h3></a></li>
-                    <div class="faq-answer" id="answer3">Your goals are stored  on our secured cloud database.</div>
-                    </ol>
-            </div>
+  <div class="sub-container container">
+    <div class="faq-questions">
 
-            <div class="faq-questions">
-                    <ol>
-                        <li class="question4"><a href="#answer4"><h3>How do you use my information?</h3></a></li>
-                    <div class="faq-answer" id="answer4">Your information are protected by our privacy policy and are not in anyway considered public document.</div>
-                    </ol>
-            </div>
+      <input type="checkbox" id="toggle1" class="toggle" />
+      <label class="title" for="toggle1">
+        <h3>Is it free?</h3>
+      </label>
+      <div class="faq-answer">
+        <p> Yes, it is free. </p>
+      </div>
 
-            <div class="faq-questions">
-                    <ol>
-                        <li class="question5"><a href="#answer5"><h3>Can I get the goal tracker on playstore or app store?</h3></a></li>
-                    <div class="faq-answer" id="answer5">No, the downloadable app is undergoing review, you will be notify when they are ready to download.</div>
-                    </ol>
-            </div>
+    </div>
 
-            <div class="faq-questions">
-                    <ol>
-                        <li class="question5"><a href="#answer6"><h3>Can I set time tracker for my goal?</h3></a></li>
-                    <div class="faq-answer" id="answer6">This feature is under deployment.</div>
-                    </ol>
-                </div>
-      </div>-->
+    <div class="faq-questions">
 
+      <input type="checkbox" id="toggle2" class="toggle" />
+      <label class="title" for="toggle2">
+        <h3>Can I view my goals offline?</h3>
+      </label>
+      <div class="faq-answer">
+        <p> No, currently goals cannot be viewed offline. </p>
+      </div>
 
-    
-    </body>
+    </div>
 
-</html>
+    <div class="faq-questions">
 
+      <input type="checkbox" id="toggle3" class="toggle" />
+      <label class="title" for="toggle3">
+        <h3>Where is my goal stored?</h3>
+      </label>
+      <div class="faq-answer">
+        <p> Your goals are stored on our secured cloud database. </p>
+      </div>
 
-    <!--<base href="/">
+    </div>
 
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link href="styles.css" type="text/css">
+    <div class="faq-questions">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8.17.6/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
-  </head>
+      <input type="checkbox" id="toggle4" class="toggle" />
+      <label class="title" for="toggle4">
+        <h3>How do you use my information?</h3>
+      </label>
+      <div class="faq-answer">
+        <p> Your information are protected by our privacy policy and are not in anyway considered public document.
+        </p>
+      </div>
 
-  <body>
-    <app-root></app-root>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-  <script src="runtime-es2015.js" type="module"></script>
-  <script src="polyfills-es2015.js" type="module"></script>
-  <script src="runtime-es5.js" nomodule defer></script>
-  <script src="polyfills-es5.js" nomodule defer></script>
-  <script src="styles-es2015.js" type="module"></script>
-  <script src="styles-es5.js" nomodule defer></script>
-  <script src="scripts.js" defer></script>
-  <script src="vendor-es2015.js" type="module"></script>
-  <script src="main-es2015.js" type="module"></script>
-  <script src="vendor-es5.js" nomodule defer></script><script src="main-es5.js" nomodule defer></script>
-</body>-->
+    <div class="faq-questions">
 
+      <input type="checkbox" id="toggle5" class="toggle" />
+      <label class="title" for="toggle5">
+        <h3>Can I get the goal tracker on playstore or app store?</h3>
+      </label>
+      <div class="faq-answer">
+        <p> No, goal tracker can only be used on the web.</p>
+      </div>
 
+    </div>
+
+    <div class="faq-questions">
+
+      <input type="checkbox" id="toggle6" class="toggle" />
+      <label class="title" for="toggle6">
+        <h3>Can I set time tracker for my goal?</h3>
+      </label>
+      <div class="faq-answer">
+        <p> This feature does not exist yet. </p>
+      </div>
+
+    </div>
+  </div>
+</section>

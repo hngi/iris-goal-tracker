@@ -10,6 +10,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { TeamComponent } from './team/team.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { FaqComponent } from './faq/faq.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'team', component: TeamComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'faq', component: FaqComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'dashboard', component: DashboardComponent },
 ];
