@@ -14,6 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AboutComponent } from './about/about.component';
+import { TeamComponent } from './team/team.component';
+import { ContactComponent } from './contact/contact.component';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     LoginComponent,
     RegisterComponent,
     ResetPasswordComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    AboutComponent,
+    TeamComponent,
+    ContactComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,

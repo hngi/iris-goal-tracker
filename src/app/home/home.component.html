@@ -13,6 +13,12 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
+            <a class="btn" [routerLink]="['/about']">About Us</a>
+          </li>
+          <li class="nav-item">
+              <a class="btn" [routerLink]="['/team']">Our Team</a>
+          </li>
+          <li class="nav-item">
             <a class="btn login-trigger" [class.active]="sign === 'login'" (click)=" sign = 'login'"
               routerLinkActive="active">Sign In</a>
           </li>
@@ -42,6 +48,10 @@
         <div class="col-lg-4" [ngSwitch]="sign">
           <app-login *ngSwitchCase="'login'"></app-login>
           <app-register *ngSwitchCase="'register'"></app-register>
+          <app-forgot-password *ngSwitchCase="'forgot'"></app-forgot-password>
+          <div *ngIf="sign === 'login'" class="">
+            Can't remember your password? <a class="btn btn-link" (click)="sign = 'forgot'">Reset</a>
+          </div>
         </div>
       </div>
     </div>
