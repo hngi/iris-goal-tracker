@@ -63,7 +63,7 @@
                       {{ getAvatar(thisUser.name).initials }}
                     </div>
                     <div *ngIf="thisUser.image && thisUser.image.data" class="avatar rounded-circle">
-                      <img [src]="user.apiUrlBase+'/'+thisUser.image.data">
+                      <img [src]="thisUser.image.data">
                     </div>
                   </div>
                   <form>
@@ -71,7 +71,7 @@
                       <i class="material-icons edit-image" title="Edit Profile Image" data-toggle="tooltip"
                         data-placement="top">edit</i>
                     </label>
-                    <input style="display: none" [(ngModel)]="imageData" (onchange)="uploadImage()" type="file"
+                    <input style="display: none" [(ngModel)]="imageData" (change)="uploadImage($event)" type="file"
                       id="image" name="image" />
                   </form>
                   <h5>{{ thisUser.name }}</h5>
