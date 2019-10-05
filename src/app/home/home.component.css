@@ -2,7 +2,7 @@
   padding-top: 80px;
 }
 
-.row {
+.mobile-padding {
   padding-top: 62px;
 }
 
@@ -36,15 +36,17 @@ nav {
   outline: none;
 }
 
-.login-trigger {
-  margin-right: 20px;
+.login-trigger, .page-trigger {
+  margin-right: 15px;
 }
 
-.login-trigger, .register-trigger {
+.login-trigger, .register-trigger, .page-trigger {
   color: black;
   padding: 10px;
 }
 
+.page-trigger.active,
+.page-trigger:hover,
 .login-trigger.active,
 .login-trigger:hover,
 .register-trigger.active,
@@ -55,6 +57,22 @@ nav {
   -moz-transition: background-color 0.5s ease-out;
   -o-transition: background-color 0.5s ease-out;
   transition: background-color 0.5s ease-out;
+}
+
+.col-4 {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.tour-modal-body {
+  height: 400px;
+}
+
+.tour-link {   
+  cursor: pointer;  
+}
+
+button.close {
+  outline: none;
 }
 
 @media (max-width: 767px) {

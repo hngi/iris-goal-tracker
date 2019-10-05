@@ -8,6 +8,14 @@
     margin-bottom: 70px;
 }
 
+.forgot-password {
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 37px;
+    margin-top: -27px !important;
+    margin-bottom: 0 !important;
+}
+
 .input-group {
    padding-bottom: 10px;
 }
