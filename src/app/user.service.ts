@@ -13,6 +13,10 @@ export class UserService {
     this.isLoggedIn.next(Boolean(this.getUserObj()));
   }
 
+  get apiUrlBase(): string {
+    return this.api.url;
+  }
+
   login(user: { email: string, password: string }) {
     return this.api.post('users/login', user);
   }
@@ -23,6 +27,10 @@ export class UserService {
 
   verify(token: string) {
     return this.api.post('users/verify', { token });
+  }
+
+  uploadProfileImage(user: string, formData: any) {
+    return this.api.post(`users/uploads/image/${user}`, formData);
   }
 
   logout() {
