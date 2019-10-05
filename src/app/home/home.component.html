@@ -13,16 +13,16 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="btn" [routerLink]="['/about']">About Us</a>
+            <a class="btn page-trigger" [routerLink]="['/about']">About Us</a>
           </li>
           <li class="nav-item">
-            <a class="btn" [routerLink]="['/contact']">Contact Us</a>
+            <a class="btn page-trigger" [routerLink]="['/contact']">Contact Us</a>
           </li>
           <li class="nav-item">
-              <a class="btn" [routerLink]="['/team']">Our Team</a>
+            <a class="btn page-trigger" [routerLink]="['/team']">Our Team</a>
           </li>
           <li class="nav-item">
-              <a class="btn" [routerLink]="['/faq']">FAQ</a>
+            <a class="btn page-trigger" [routerLink]="['/faq']">FAQ</a>
           </li>
           <li class="nav-item">
             <a class="btn login-trigger" [class.active]="sign === 'login'" (click)=" sign = 'login'"
@@ -40,26 +40,91 @@
     <div class="container">
       <div class="row mobile-padding">
         <div class="col-lg-8  d-lg-block mobile-margin-bottom">
-          <h1 class="display-4"><strong>Stay focused,</strong> go after your dreams and <strong>keep moving</strong>
-            towards your <strong>goals.</strong></h1>
+          <h1 id="displayQuote" class="display-4">Stay focused, go after your dreams and keep moving
+            towards your goals.</h1>
+          <div id="">
+            <!-- quote goes here-->
+          </div>
           <div class="note d-flex">
             Goal Tracker is a powerful and flexible tool that boosts your productivity and organizes your life - in just
             a few steps.
           </div>
           <div class="sign-button">
-            <button class="register-button btn btn-primary btn-lg shadow" [class.active]="sign === 'register'"
+            <button class="register-button btn btn-primary btn-md shadow mr-4" [class.active]="sign === 'register'"
               type="button" (click)="sign = 'register'">Get Started - It's free!</button>
+            <button class="guide-button btn btn-outline-primary btn-md shadow" data-toggle="modal"
+              data-target="#tourModal" type="button">Take a Tour</button>
           </div>
         </div>
         <div class="col-lg-4" [ngSwitch]="sign">
           <app-login *ngSwitchCase="'login'"></app-login>
           <app-register *ngSwitchCase="'register'"></app-register>
           <app-forgot-password *ngSwitchCase="'forgot'"></app-forgot-password>
-          <div *ngIf="sign === 'login'" class="">
-            Can't remember your password? <a class="btn btn-link" (click)="sign = 'forgot'">Reset</a>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<div id="tourModal" class="modal fade" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">QUICK START</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body tour-modal-body">
+        <div class="row text-center tour-nav">
+          <div class="col-4 py-2 mt-2"><a class="tour-link" (click)="tour = 'overview'">Overview</a></div>
+          <div class="col-4 py-2 mt-2"><a class="tour-link" (click)="tour = 'how-to-use'">How to use</a></div>
+          <div class="col-4 py-2 mt-2"><a class="tour-link" (click)="tour = 'video-guide'">Video Guide</a></div>
+        </div>
+
+        <div class="row px-3" style="padding-bottom: 0">
+          <div class="tour-content" [ngSwitch]="tour">
+            <div *ngSwitchCase="'overview'">
+              <h5>Sections on the Dashboard</h5>
+              <ol>
+                <li><strong>My Profile</strong> section contains a brief information of the user - e-mail address,
+                  initials avatar.</li>
+                <li><strong>Add a new goal</strong> section contains a form to add a goal title, goal description and
+                  schedule a date - if necessary.</li>
+                <li><strong>At a glance</strong> section shows a statistics card of all goals both pending and
+                  completed.</li>
+                <li><strong>My goals</strong> section shows each goal's title, description, scheduled date and progress
+                  bar.</li>
+                <li><strong>Goal Information</strong> section displays information on to-do items required to complete
+                  the goal, a countdown
+                  if there's a scheduled date, percentage progress.
+                </li>
+              </ol>
+            </div>
+            <div *ngSwitchCase="'how-to-use'">
+              <h5>Steps on how to use the goal tracker</h5>
+              <ol>
+                <li>Create an account.</li>
+                <li>Sign in to access your Goal Tracker dashboard.</li>
+                <li>Add a new goal and give it a description. Is it a future goal? Schedule a date!</li>
+                <li>View summary of your goals on the <strong>At a glance</strong> section.</li>
+                <li>Add the to-do items it'll take to complete the goal.</li>
+              </ol>
+            </div>
+            <div *ngSwitchCase="'video-guide'">
+              <h5>Watch video on how to get started</h5>
+              <video width="465" controls>
+                <source src="https://res.cloudinary.com/iolarav/video/upload/v1570291450/Goal_tracker_1_rsfppr.webm"
+                  type="video/webm">
+                Your browser does not support HTML5 video.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
