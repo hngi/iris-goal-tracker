@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
 
+declare const quoteGenerator: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,5 +19,9 @@ export class AppComponent {
         this.router.navigate(['/']);
       }
     });
+  }
+
+  onload(){
+    quoteGenerator();
   }
 }
