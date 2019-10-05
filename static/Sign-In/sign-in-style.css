@@ -1,0 +1,188 @@
+body {
+           
+    background-image: url("backgroundimage.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Roboto;
+
+}
+.navbar {
+    display: flex;
+    flex-direction: row;
+    
+}
+.nav-brand {
+    position: absolute;
+    width: 180px;
+    height: 86px;
+    left: 69px;
+    top: 30px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 50px;
+    text-decoration: none;
+    color: #1D1D1D;
+}
+.nav-link {
+    position: absolute;
+    width: 144px;
+    height: 48px;
+    left: 1000px;
+    top: 30px;
+    margin-left: 15px;
+    padding: 10px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    line-height: 29px;
+    text-decoration: none;
+    color: #000000;
+
+}
+.nav-sign-in {
+    position: absolute;
+    width: 100px;
+    height: 58px;
+    left: 1122px;
+    top: 30px;
+    margin-left: 10px;
+    padding: 10px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    line-height: 29px;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
+    color: #000000;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+#home-content {
+    position: absolute;
+    left: 69px;
+    right: 600px;
+    top: 65px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 70px;
+    line-height: 60px;
+    margin-top: 90px;
+
+}
+
+.abt-ABC {
+    position: absolute;
+    width: 700px;
+    height: 139px;
+    left: 69px;
+    top: 380px;
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 40px;
+    align-items: center;
+    color: #444444;
+}
+.btn-get-started {
+    position: absolute;
+    width: 180px;
+    height: 50px;
+    left: 69px;
+    top: 550px;
+    background: #0083FF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 17px;
+    
+}
+
+#login {
+   
+    background-color: rgba(245, 245, 245, 0.9);
+    box-shadow: 9px 9px 39px rgba(191, 191, 191, 0.24); /*remove*/
+    position: absolute;
+    left: 888px;
+    top: 150px;
+    right: 69px;
+    text-align: center;
+    font-family: Roboto;
+    width: 350px;
+    height: 450px;
+    border-radius: 5px;
+    
+    
+}
+.heading {
+    font-weight: bold;
+    font-size: 24px;
+    font-style: normal;
+    line-height: 28px;
+    padding: 10px;
+    font-size: 40px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    right: 144px;
+    left: 152px;
+    text-align: center;
+    
+    }
+
+form {
+    opacity: 0.5;
+}
+.sign-in {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    margin-top: 3px;
+   
+}
+.name {
+    border: none;
+    text-align: left;
+    margin-left: 30px;
+    line-height: 16px;
+    font-size: 5px;
+    color: #000000;
+    background-color: rgba(245, 245, 245, 0.9);
+    
+}
+#your-name {
+    margin-top: 70px;
+}
+.input-name {
+    width: 280px;
+    height: 35px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    font-size: 18px;
+    background-color: rgba(245, 245, 245, 0.9);
+}
+
+#name-field {
+    margin-bottom: 0px;
+    margin-top: 25px;
+}
+#submit-btn{
+    background-color: #0083FF;
+    box-shadow: 9px 9px 9px rgba(92, 218, 122, 0.24);
+    margin-top: 80px;
+    border: none;
+    color: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    height: 40px;
+    
+}

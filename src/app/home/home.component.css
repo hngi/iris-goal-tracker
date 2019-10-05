@@ -1,0 +1,75 @@
+#home-body {
+  padding-top: 80px;
+}
+
+.row {
+  padding-top: 62px;
+}
+
+nav {
+  padding-top: 20px;
+}
+
+.navbar-nav .nav-item a,
+.navbar-nav .nav-item a:hover {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navbar-nav .item {
+  font-size: 1.4rem;
+  color: black;
+}
+
+#navbarCollapse .navbar {
+  background-color: #0d3349;
+}
+
+.note {
+  font-size: 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.register-button {
+  outline: none;
+}
+
+.login-trigger {
+  margin-right: 20px;
+}
+
+.login-trigger, .register-trigger {
+  color: black;
+  padding: 10px;
+}
+
+.login-trigger.active,
+.login-trigger:hover,
+.register-trigger.active,
+.register-trigger:hover {
+  color: black;
+  border: 1px solid black;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+}
+
+@media (max-width: 767px) {
+  .mobile-padding {
+    padding-top: 0;
+  }
+
+  .mobile-margin-bottom{
+    margin-bottom: 10vh;
+  }
+}
+
+@media (min-width: 992px) {
+  .row {
+    margin-top: -6%;
+    padding-bottom: 9%;
+  }
+}

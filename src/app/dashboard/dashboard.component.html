@@ -1,0 +1,261 @@
+<!-- Main Content -->
+<div id="content" class="mb-4">
+  <!-- Page Heading -->
+  <div class="d-sm-flex d-xs-flex align-items-center justify-content-between m-4">
+    <h1 class="h3 mb-0 text-gray-800"> Goal Tracker</h1>
+    <div class="d-md-none d-lg-none d-xl-none">
+      <!-- <i class="material-icons md-28 text-gray-800" style="float: right">person</i> -->
+      <div class="dropdown open">
+        <div class="nav-avatar d-inline-block float-right dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <div class="initials-avatar rounded-circle" [ngStyle]="{ backgroundColor: getAvatar(thisUser.name).color }">
+            {{ getAvatar(thisUser.name).initials }}
+          </div>
+        </div>
+
+        <div class="dropdown-menu">
+          <!-- profile card -->
+          <div class="card d-md-block border-0 mb-3 py-2 br-10 bg-white">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col text-center">
+                  <div class="d-flex w-100 justify-content-between align-items-center mb-3">
+                    <div class="d-flex flex-row align-items-center">
+                      <div class="avatar mr-3">
+                        <div class="initials-avatar rounded-circle"
+                          [ngStyle]="{ backgroundColor: getAvatar(thisUser.name).color }">
+                          {{ getAvatar(thisUser.name).initials }}
+                        </div>
+                      </div>
+                      <h5>{{ thisUser.name }}</h5>
+                    </div>
+                    <small (click)="editUser()"> <i class="material-icons">edit</i></small>
+                  </div>
+                  <div class="text-s d-flex w-100 mb-3 justify-content-between text-gray-800 align-items-center">
+                    <div class="d-flex flex-row align-items-center">
+                      <i class="material-icons mr-1 text-s text-gray-300">email</i>
+                      {{ thisUser.email }}
+                    </div>
+                    <i class="material-icons text-s text-gray-300">lock</i>
+                  </div>
+                  <button type="button" (click)="logout()" class="btn btn-danger">Log Out</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="d-flex flex-row justify-content-between mobile-content">
+    <section class="d-flex flex-column">
+      <!-- profile card -->
+      <div class="card d-none d-md-block border-0 shadow h-80 mb-3 py-2 br-10 bg-white">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col text-center">
+              <div class="d-flex w-100 justify-content-between align-items-center mb-3">
+                <div class="d-flex flex-row align-items-center">
+                  <div class="avatar mr-3">
+                    <div class="initials-avatar rounded-circle"
+                      [ngStyle]="{ backgroundColor: getAvatar(thisUser.name).color }">
+                      {{ getAvatar(thisUser.name).initials }}
+                    </div>
+                  </div>
+                  <h5>{{ thisUser.name }}</h5>
+                </div>
+                <small (click)="editUser()"> <i class="material-icons">edit</i></small>
+              </div>
+              <div class="text-s d-flex w-100 mb-3 justify-content-between text-gray-800 align-items-center">
+                <div class="d-flex flex-row align-items-center">
+                  <i class="material-icons mr-1 text-s text-gray-300">email</i>
+                  {{ thisUser.email }}
+                </div>
+                <i class="material-icons text-s text-gray-300">lock</i>
+              </div>
+              <button type="button" (click)="logout()" class="btn btn-danger">Log Out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add a new goal card -->
+      <div #newGoalCard class="card new-goal animated fadeInUp faster d-md-block border-0 shadow br-10 py-1 bg-primary">
+        <small (click)="toggleGoalCard(false)" class="d-md-none d-lg-none d-xl-none text-white text-right pr-3"> <i
+            class="material-icons">close</i></small>
+        <div class="card-body flex-grow-0">
+          <h4 class="text-white">Add new goal</h4>
+          <form [formGroup]="createGoalForm" (ngSubmit)="createGoal(createGoalForm.value)">
+            <div class="form-group">
+              <input type="text" formControlName="title" placeholder="Goal Title"
+                class="form-control form-control-user">
+            </div>
+            <div class="form-group">
+              <textarea formControlName="description" class="form-control form-control-user" name="" id="" cols="5"
+                rows="3" placeholder="Goal Description"></textarea>
+            </div>
+            <div class="form-group">
+              <input class="form-control form-control-user" type="text" [min]="today" formControlName="scheduleDate" 
+                class="form-control" placeholder="Schedule Date (Optional)" onfocus="(this.type='date')"/>
+            </div>
+            <div class="text-center">
+              <button type="submit" [disabled]="!createGoalForm.valid" class="btn btn-outline-light">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-view">
+      <h4>At a glance</h4>
+      <div class="card border-0 shadow py-2 mb-3">
+        <div class="row flex-row">
+          <div class="col-4 col-xs-4 mb-4 metric-card">
+            <div class="card p-2 border-0 text-center">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="h5 mb-0 font-weight-bold mb-1">{{ goals.length }}</div>
+                  <div class="text-xs font-weight-bold">All Goals</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-4 mb-4 metric-card">
+            <div class="card text-center text-warning p-2 border-0">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="h5 mb-0 font-weight-bold mb-1">{{ goals.length - getGoalsMetric() }}</div>
+                  <div class="text-xs font-weight-bold">Pending Goals</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4 mb-4 metric-card">
+            <div class="card text-center text-success p-2 border-0">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="h5 mb-0 font-weight-bold mb-1">{{ getGoalsMetric() }}</div>
+                  <div class="text-xs font-weight-bold">Completed Goals</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <h4>My Goals</h4>
+      <div class="card border-0 shadow py-2 goals-card">
+        <div class="card-body p-0 py-3" *ngIf="goals.length > 0">
+          <div class="row no-gutters align-items-center scrollable">
+            <div class="list-group w-100 p-4">
+              <div *ngFor="let goal of goals"
+                class="list-group-item goal animated flipInX flex-column align-items-start mt-1 mb-3 p-0 border-0">
+                <div class="d-flex w-100 justify-content-between">
+                  <a class="h5 mb-1 text-dark" (click)="loadSingleGoal(goal)">{{ goal.title }}</a>
+                  <span class="action-buttons">
+                    <small class="material-icons md-20" (click)="editGoal(goal)">edit</small>
+                    <small class="material-icons md-20 text-danger" (click)="deleteGoal(goal)">close</small>
+                  </span>
+                </div>
+                <small class="mb-2 d-inline" *ngIf="goal.description">{{ goal.description }}</small>
+                <small *ngIf="goal.description" style="float: right">{{ goal.scheduleDate | date:'yyyy-MM-dd' }}</small>
+                <div class="progress mt-2">
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{ width: goal.progress+'%' }"
+                    aria-valuemin="0" aria-valuemax="100"
+                    [ngClass]="{'bg-success': goal.isComplete, 'bg-warning': !goal.isComplete }"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card-body d-flex flex-column justify-content-center align-items-center" *ngIf="goals.length === 0">
+          <h5 class="text-black-50 mt-4 w-50 text-center">It's quite lonely here. Look over that corner to add a new
+            goal.</h5>
+        </div>
+      </div>
+      <!-- <div class="mt-3 text-center">
+          <a href="">view more</a>
+        </div> -->
+
+      <div class="fab d-md-none d-lg-none d-xl-none">
+        <button class="btn" type="button" (click)="toggleGoalCard()"><i class="material-icons add">add</i></button>
+      </div>
+
+    </section>
+
+    <section>
+      <div #singleGoalCard class="card single-goal d-md-block border-0 shadow py-2 todo-card">
+        <div class="card-body" *ngIf="goal">
+          <small (click)="toggleSingleGoalCard(false)" class="d-md-none d-lg-none d-xl-none text-dark text-right float-right pr-3">
+            <i class="material-icons">close</i></small>
+            <div class="clearfix"></div>
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <h4>{{ goal.title }}</h4>
+              <small class="text-gray-800">{{ goal.description }}</small>
+              <div class="text-xs font-weight-bold text-primary text-gray-800 mb-4">
+                <h6 class="d-inline" style="font-weight: bold">{{ goal.progress || '0' }}% complete</h6>
+                <countdown-timer id="countdown" class="text-gray-800" [end]="goal.scheduleDate" (zeroTrigger)="finishCount(goal)" *ngIf="goal.scheduleDate"></countdown-timer>
+                <p *ngIf="!goal.scheduleDate || goalScheduleText[goal._id]">
+                  {{ goalScheduleText[goal._id] || "" }}
+                </p>
+              </div>
+
+              <form [formGroup]="createTodoForm" (ngSubmit)="createTodo(createTodoForm.value)">
+                <div class="input-group">
+                  <input type="text" formControlName="title" class="form-control" placeholder="Add new to-do item"
+                    aria-label="" aria-describedby="basic-addon1">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" style="height: calc(1.5em + 0.75rem + 2px);" type="submit">
+                      <span class="material-icons">add</span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <ul class="list-group mt-4 scrollable-todo">
+                <li class="list-group-item animated flipInX todo" *ngFor="let todo of goal.todos">
+                  <!-- <div class="d-flex w-100"> -->
+                  <input type="checkbox" id="checkTodo" [checked]="todo.isComplete" (click)="markTodo(todo)"
+                    class="checkbox d-inline-block mr-2">
+                  <div class="d-inline-block h-100" style="width: 90%;" [ngClass]="{'strikethrough': todo.isComplete }">
+                    {{ todo.title }}
+                    <span class="action-buttons float-right">
+                      <small class="material-icons md-20 text-danger" (click)="deleteTodo(todo)">close</small>
+                    </span>
+                  </div>
+                  <!-- </div> -->
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-body d-flex flex-column justify-content-center h-100 align-items-center" *ngIf="!goal">
+
+          <svg width="194" height="150" viewBox="0 0 194 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M142.103 85.3009C141.174 82.9502 138.515 81.799 136.164 82.7274C133.813 83.6568 132.661 86.316 133.59 88.6667C135.916 94.5492 137.095 100.766 137.095 107.146C137.095 134.859 114.549 157.406 86.8351 157.406C59.1192 157.406 36.5701 134.859 36.5701 107.146C36.5701 79.4328 59.1192 56.886 86.8351 56.886C93.2371 56.886 99.4648 58.0723 105.345 60.4121C107.693 61.3476 110.355 60.1999 111.29 57.8518C112.225 55.5029 111.078 52.8415 108.73 51.9071C101.768 49.1366 94.4011 47.732 86.8354 47.732C54.0722 47.732 27.4165 74.3846 27.4165 107.146C27.4165 139.907 54.071 166.56 86.8351 166.56C119.596 166.56 146.249 139.907 146.249 107.146C146.249 99.6091 144.854 92.2599 142.103 85.3009Z"
+              fill="#C4C4C4" />
+            <path
+              d="M170.321 83.2105C169.625 80.7802 167.093 79.3756 164.661 80.0693C162.231 80.765 160.825 83.2988 161.52 85.7287C163.504 92.6634 164.51 99.8695 164.51 107.145C164.51 149.978 129.665 184.826 86.8347 184.826C44.0016 184.826 9.154 149.979 9.154 107.145C9.154 64.3118 44.0012 29.4649 86.8347 29.4649C94.1271 29.4649 101.345 30.4754 108.288 32.4689C110.718 33.166 113.252 31.7626 113.95 29.3326C114.647 26.9027 113.243 24.3678 110.813 23.6707C103.05 21.4412 94.9819 20.3105 86.8347 20.3105C38.9538 20.3109 0 59.2647 0 107.146C0 155.026 38.9538 193.981 86.8347 193.981C134.713 193.981 173.664 155.027 173.664 107.146C173.664 99.0173 172.539 90.9644 170.321 83.2105Z"
+              fill="#C4C4C4" />
+            <path
+              d="M118.703 104.351C118.479 101.833 116.254 99.9843 113.737 100.199C111.22 100.424 109.36 102.647 109.585 105.165C109.643 105.817 109.673 106.483 109.673 107.146C109.673 119.74 99.4272 129.985 86.8343 129.985C74.2379 129.985 63.99 119.739 63.99 107.146C63.9908 94.5492 74.2383 84.3017 86.8347 84.3017C87.5383 84.3017 88.2272 84.3324 88.883 84.3927C91.4024 84.6238 93.6288 82.7725 93.8611 80.255C94.093 77.7379 92.2405 75.5096 89.7235 75.2769C88.7898 75.1909 87.8179 75.1473 86.8351 75.1473C69.1913 75.1473 54.8368 89.5011 54.8368 107.145C54.8368 124.786 69.1913 139.138 86.8351 139.138C104.476 139.138 118.828 124.786 118.828 107.145C118.827 106.213 118.786 105.272 118.703 104.351Z"
+              fill="#C4C4C4" />
+            <path
+              d="M193.299 30.7914C191.877 27.3578 188.556 25.1389 184.839 25.1389H168.88V9.18014C168.88 5.46307 166.661 2.14272 163.228 0.720681C159.795 -0.700975 155.88 0.0784346 153.253 2.70577L126.587 29.3721C123.994 31.9642 122.567 35.4114 122.567 39.0789V64.979L85.3699 102.176C83.5826 103.964 83.5826 106.862 85.3699 108.649C86.2634 109.543 87.4349 109.99 88.6061 109.99C89.7773 109.99 90.9489 109.543 91.8424 108.649L129.04 71.4519H154.94C158.608 71.4519 162.055 70.0242 164.647 67.4324L191.313 40.7654C193.941 38.1377 194.72 34.2232 193.299 30.7914ZM131.721 39.0785C131.722 37.8565 132.197 36.7077 133.06 35.8449L159.726 9.1828V27.8204L131.721 55.8258V39.0785H131.721ZM158.174 60.9592C157.324 61.8095 156.145 62.2979 154.941 62.2979H138.194L166.199 34.2933L184.838 34.2956L158.174 60.9592Z"
+              fill="#C4C4C4" />
+          </svg>
+
+          <h5 class="text-black-50 mt-4 w-50 text-center">Click on a goal for more info</h5>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</div>

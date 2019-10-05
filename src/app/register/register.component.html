@@ -1,0 +1,39 @@
+<div class="card text-center mx-auto">
+  <h2 class="access-title">Sign Up</h2>
+  <div>
+    <form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm.value)">
+      <div class="input-group mb-3 mx-auto">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="material-icons">person</i></span>
+        </div>
+        <input type="text" name="name" formControlName="name" class="form-control" placeholder="Full Name"
+          aria-label="name" required>
+      </div>
+
+      <div class="input-group mb-3 mx-auto">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="material-icons">email</i></span>
+        </div>
+        <input type="email" name="email" formControlName="email" class="form-control" placeholder="E-mail Address"
+          aria-label="email" required>
+      </div>
+
+      <div class="input-group mb-3 mx-auto">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="material-icons">lock</i></span>
+        </div>
+        <input type="password" name="password" formControlName="password" class="form-control" placeholder="Password"
+          aria-label="password" required>
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="!signupForm.valid" class="btn btn-primary btn-block mx-auto">
+          <div *ngIf="!loading">Sign up</div>
+          <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

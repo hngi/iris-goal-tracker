@@ -1,0 +1,31 @@
+<div class="card text-center mx-auto">
+  <h2 class="access-title">Sign In</h2>
+  <div>
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+      <div class="input-group mb-3 mx-auto">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="material-icons">email</i></span>
+        </div>
+        <input type="email" formControlName="email" name="email" class="form-control" placeholder="E-mail Address"
+          aria-label="email" required>
+      </div>
+
+      <div class="input-group mb-3 mx-auto">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="material-icons">lock</i></span>
+        </div>
+        <input type="password" formControlName="password" name="password" class="form-control" placeholder="Password"
+          aria-label="password" required>
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-block mx-auto">
+          <div *ngIf="!loading">Sign in</div>
+          <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

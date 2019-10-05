@@ -1,0 +1,194 @@
+section {
+  margin: 0 1.5%;
+  width: 30%;
+}
+
+.progress {
+  height: 0.3rem;
+}
+
+.metric-card {
+  height: 70px;
+  border-radius: 10px;
+}
+
+.metric-card .h5 {
+  font-size: 2rem;
+}
+
+.avatar {
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+}
+
+.dropdown-menu {
+  left: -10px !important;
+}
+
+.dropdown {
+  top: -35px;
+}
+
+.fab button {
+  box-shadow: none;
+}
+
+.nav-avatar {
+  position: relative;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.initials-avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  text-align: center;
+  font-size: 100%;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+h4 {
+  color: #0083FF;
+  font-weight: bold;
+}
+
+.goal .action-buttons,
+.todo .action-buttons {
+  display: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+.goal a {
+  cursor: pointer;
+}
+
+.goal:hover .action-buttons,
+.todo:hover .action-buttons {
+  display: block;
+}
+
+.goals-card {
+  height: 350px;
+}
+
+.scrollable {
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.todo-card {
+  height: 548px;
+}
+
+.scrollable-todo {
+  overflow-y: auto;
+  max-height: 320px;
+}
+
+i.add {
+  background-color: var(--primary);
+  vertical-align: middle !important;
+  color: white;
+  border-radius: 50%;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.fab {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
+
+.material-icons.md-20 {
+  font-size: 20px;
+}
+
+.material-icons.md-28 {
+  font-size: 28px;
+}
+
+countdown-timer {
+  float: right;
+  outline: none;
+  font-size: 16px;
+}
+
+.action-icon {
+  cursor: pointer;
+}
+
+.material-icons.md-20 { font-size: 20px; }
+.material-icons.md-28 { font-size: 28px; }
+
+
+/***    SCROLLBAR     ***/
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  color: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(165, 165, 165, 0.7);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.7);
+}
+
+/*** MEDIA STYLES ***/
+
+@media only screen and (max-width: 767px) {
+  .mobile-view {
+    width: 100%;
+    margin: 0 -25% !important;
+  }
+
+  .new-goal,
+  .single-goal {
+    z-index: 999999;
+    display: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    position: absolute;
+    flex-direction: column;
+  }
+
+
+  .todo .action-buttons,
+  .goal .action-buttons {
+    display: block !important;
+  }
+}
