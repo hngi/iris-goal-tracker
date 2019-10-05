@@ -1,0 +1,136 @@
+  html  {
+    scroll-behavior: smooth;
+    height: 100vh; 
+}
+body {
+  font-family:'Roboto', sans-serif; 
+  background-color: #F5F5F5;
+  width: 100%;    
+}    
+.logo  {  
+    width: 2.5em;
+    height: 2.5em;
+    margin-left: 1em;
+    margin-top: 1em;
+}    
+.header  {
+    margin-top: 0em;   
+    padding-bottom: 4em;  
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;     
+    height: 1em; 
+    background-color: rgb(117, 173, 224);   
+}
+.header p {    
+  padding-left: .8em;  
+  letter-spacing: 0.1em;
+  padding-top: 0.5em;
+}
+.team-note   {
+    color:  grey;
+    margin: 1em 1em 0em 1em;
+}
+h2  {
+    text-align: center;
+    font-size: 2.5em;
+    margin-top: 2em; 
+    margin-bottom: 0.2em;     
+}
+hr  {
+width: 35%;
+height: .005em; 
+border-top: 3px solid #0083FF;  
+text-align: center;
+margin-top: 0em;
+}
+.team-note p  {
+  font-style: italic;
+  margin-top: 2em;
+}
+.team img {
+  margin-top: .8em;
+}  
+h5  {
+  background-color: #0083FF;
+  padding: .7em;
+  border-radius: 0.7em;
+  margin-top: 2em;  
+}
+.team  {    
+  background-color:white;
+  padding: 2.5em 3em;
+  box-shadow: 0px 18px 16px -6px rgba(0, 0, 0, 0.4);
+  border-radius: .5em;
+  height: 13em;
+  width: 9.7em;
+  line-height: 0.5em;
+  text-align: center; 
+  cursor: pointer;   
+  transition: 1s ease-in;
+}  
+.team:hover  {
+width: 11em;
+height: 14em;
+
+}
+.teamlist {   
+  display: grid;   
+  grid-gap: 4em;  
+  margin: 3em 2em 4em 1.5em;      
+  grid-template-columns: repeat(auto-fit, minmax(14em, 1fr));    
+}    
+
+footer {    
+  width: 100%;
+  padding-top: .5%;
+  background-color:  rgb(117, 173, 224);
+  color: #F5F5F5;
+  height: 3em;    
+  text-align: center;
+  font-weight: 200;
+  font-size: 1.2em;
+}
+
+/* CSS for media queries for small devices */
+
+@media (min-width: 320px) and (max-width: 480px) { 
+   
+.team-note  {
+  margin-right: 1.5em;
+  padding-right: .5em;
+} 
+.team-note p  {
+  text-align: start;
+} 
+.teamlist  {
+   margin-left: 4.5em;
+   margin-bottom: 3em;
+} 
+footer  {
+  padding-top: .01em;
+  padding-bottom: .7em;
+  padding-left: 1.4em;
+  font-weight: 100;
+  height: 2em;
+  font-size: 1em;
+  margin: 1em 0em;
+  text-align: left;
+}  
+
+
+/* CSS for media queries for medium devices */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+.team-note  {
+  padding-right: 2em;
+  padding-left: 2em;
+  } 
+
+hr  {
+  width: 55%;
+ }
+  .teamlist  {
+    margin-left: 4em;
+  } 
+}
