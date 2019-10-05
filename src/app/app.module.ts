@@ -15,6 +15,7 @@ import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AboutComponent } from './about/about.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AboutComponent } from './about/about.component';
     RegisterComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
-    AboutComponent
+    AboutComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
