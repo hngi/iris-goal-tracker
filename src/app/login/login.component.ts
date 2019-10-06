@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { UtilService } from '../util.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
 
-  constructor(private user: UserService, private utils: UtilService) {
+  constructor(private user: UserService, private utils: UtilService, private router: Router) {
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     this.user.login(userData).subscribe((res: any) => { // res.data is the user object
       this.loginForm.reset();
       this.user.saveUser(res.data, true);
+      this.router.navigate(['/dashboard']);
       this.loading = false;
       this.utils.showToast({ title: 'Successfully logged in', type: 'success' });
     }, err => {

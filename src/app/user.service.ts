@@ -11,7 +11,7 @@ export class UserService {
   public passwordReset: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private api: ApiService) {
-    this.isLoggedIn.next(Boolean(this.getUserObj()));
+    this.isLoggedIn = new BehaviorSubject(Boolean(this.getUserObj()));
   }
 
   get apiUrlBase(): string {

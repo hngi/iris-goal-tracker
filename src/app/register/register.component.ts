@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit {
         this.user.verify(token).subscribe((user: any) => {
           this.loading = false;
           this.user.saveUser(user.data, true);
+          this.router.navigate(['/dashboard']);
           this.utils.showToast({ title: 'Verification complete! You\'re logged in.', type: 'success' });
         }, err => {
           this.loading = false;

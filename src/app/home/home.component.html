@@ -61,6 +61,7 @@
           <app-login *ngSwitchCase="'login'"></app-login>
           <app-register *ngSwitchCase="'register'"></app-register>
           <app-forgot-password *ngSwitchCase="'forgot'"></app-forgot-password>
+          <app-reset-password *ngSwitchCase="'reset'"></app-reset-password>
           <p id="forgot"><a *ngIf="sign === 'login'" (click)="sign = 'forgot'">Forgot Password?</a></p>
         </div>
       </div>

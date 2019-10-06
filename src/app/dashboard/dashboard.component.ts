@@ -5,6 +5,8 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { UserService } from '../user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UtilService } from '../util.service';
+import { FilestackService } from '@filestack/angular';
+import { Router } from '@angular/router';
 
 declare let swal: any;
 @Component({
@@ -30,7 +32,13 @@ export class DashboardComponent implements OnInit {
   @ViewChild('newGoalCard', { static: false }) goalCard: ElementRef;
   @ViewChild('singleGoalCard', { static: false }) singleGoalCard: ElementRef;
 
-  constructor(public user: UserService, private utils: UtilService, private renderer: Renderer2) {
+  constructor(
+    public user: UserService,
+    private utils: UtilService,
+    private renderer: Renderer2,
+    private fs: FilestackService,
+    private router: Router
+  ) {
     this.createGoalForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl(''),
@@ -48,7 +56,10 @@ export class DashboardComponent implements OnInit {
     }
 
     this.loadGoals();
+
     this.thisUser = this.user.getUserObj();
+
+    this.fs.init('Abr0rgt4kTV6QUPH7GY35z');
   }
 
   public toggleGoalCard(on = true) {
@@ -113,6 +124,7 @@ export class DashboardComponent implements OnInit {
 
   public logout() {
     this.user.logout();
+    this.router.navigate(['/']);
   }
 
   public getAvatar(text: string) {
@@ -252,18 +264,24 @@ export class DashboardComponent implements OnInit {
     this.goalScheduleText[goal._id] = 'In Progress';
   }
 
-  public async uploadImage(event: any) {
+  public uploadImage(event: any) {
     if (event.target.files.length > 0) {
       console.log('uploading profile image...');
-      const data = await this.utils.toBase64(event.target.files[0]);
+      const data = event.target.files[0];
 
-      this.user.uploadProfileImage(this.thisUser._id, { data, name: 'profile-image-' + Date.now() }).subscribe((res: any) => {
-        this.utils.showToast({ title: 'Successfuly updated your profile image', type: 'success' });
-        this.thisUser = res.data;
-        this.user.saveUser(this.thisUser);
-      }, err => {
-        this.utils.showToast({ title: err, type: 'error' });
-      });
+      this.fs.upload(data)
+        .subscribe((uploadRes: { key: string, url: string, size: number, type: string, filename: string }) => {
+          console.log(uploadRes);
+          this.user
+            .updateUser(this.thisUser._id, { image: { data: uploadRes.url, name: uploadRes.key } })
+            .subscribe((res: any) => {
+              this.utils.showToast({ title: 'Successfuly updated your profile image', type: 'success' });
+              this.thisUser = res.data;
+              this.user.saveUser(this.thisUser);
+            }, err => {
+              this.utils.showToast({ title: err, type: 'error' });
+            });
+        });
     }
   }
 
@@ -298,7 +316,7 @@ export class DashboardComponent implements OnInit {
     return `${d.getFullYear()}-${d.getMonth() < 10 ? '0' + d.getMonth() : d.getMonth()}-${d.getDate() < 10 ? '0' + d.getDate() : d.getDate()}`;
   }
 
-  rating() {
-    swal.fire('SUCCESS', 'Thank you for rating us!', 'success')
+  public rating() {
+    swal.fire('SUCCESS', 'Thank you for rating us!', 'success');
   }
 }

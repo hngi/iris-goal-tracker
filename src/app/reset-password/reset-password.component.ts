@@ -12,36 +12,34 @@ import { UtilService } from '../util.service';
 export class ResetPasswordComponent implements OnInit {
   token: string;
   loading = false;
-  passwordResetForm: FormGroup;
+  passwordResetForm = {
+    newPassword: '',
+    confirmPassword: ''
+  };
 
 
   constructor(private activatedRoute: ActivatedRoute, private user: UserService, private utils: UtilService) {
-    this.passwordResetForm = new FormGroup({
-      password: new FormControl(''),
-      confirmPassword: new FormControl('')
-    });
   }
 
   ngOnInit() {
     // retrieve the token from the url after user clicked the link in the email
     this.token = this.activatedRoute.snapshot.paramMap.get('token');
-    console.log(this.token);
+    console.log('token at reset password', this.token);
   }
 
   onSubmit(formData: any) {
     this.loading = true;
-    delete formData.confirmPassword;
-    if (this.passwordResetForm.controls.password.value === this.passwordResetForm.controls.confirmPassword.value) {
-      console.log(formData);
-      this.user.forgotPassword(formData).subscribe((res: any) => { // res.data is the user object
-        this.passwordResetForm.reset();
-        this.loading = false;
-        this.user.triggerPasswordResetComplete();
-        this.utils.showToast({ title: 'Your password has been reset. You can log in now.', type: 'success' });
-      }, err => {
-        this.loading = false;
-        this.utils.showToast({ title: err, type: 'error' });
-      });
-    }
+    console.log(formData);
+    formData.token = this.token;
+    this.user.resetPassword(formData).subscribe((res: any) => { // res.data is the user object
+      this.passwordResetForm.newPassword = '';
+      this.passwordResetForm.confirmPassword = '';
+      this.loading = false;
+      this.user.triggerPasswordResetComplete();
+      this.utils.showToast({ title: 'Your password has been reset. You can log in now.', type: 'success' });
+    }, err => {
+      this.loading = false;
+      this.utils.showToast({ title: err, type: 'error' });
+    });
   }
 }

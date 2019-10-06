@@ -11,12 +11,14 @@ declare const quoteGenerator: any;
 })
 
 export class AppComponent {
-  constructor(private user: UserService, private router: Router, private route: ActivatedRoute) {
+  constructor(private user: UserService, private router: Router, private route: Router) {
+    // console.log(route);
+    // this.route.fragment.subscribe(console.log);
     this.user.getLoggedInStatus().subscribe(isLoggedIn => {
       if (isLoggedIn) {
-        this.router.navigate(['/dashboard']);
+        // this.router.navigate(['/dashboard']);
       } else {
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
       }
     });
   }

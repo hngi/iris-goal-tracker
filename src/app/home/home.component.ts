@@ -22,6 +22,12 @@ export class HomeComponent implements OnInit {
         this.sign = 'login';
       }
     });
+
+    this.token = this.route.snapshot.paramMap.get('token');
+    console.log('token at home: ', this.token);
+    if (this.token) {
+      this.sign = 'reset';
+    }
   }
 
 }

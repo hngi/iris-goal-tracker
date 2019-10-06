@@ -12,20 +12,18 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { FaqComponent } from './faq/faq.component';
 import { AuthGuard } from './auth/auth.guard';
+import { ResetTokenGuard } from './auth/reset-token.guard';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'reset-password/:token', component: ResetPasswordComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: '', redirectTo: '/home/', pathMatch: 'full' },
+  { path: 'home/:token', component: HomeComponent },
   { path: 'team', component: TeamComponent },
+  { path: 'reset-password/:token', canActivate: [ResetTokenGuard], component: ResetPasswordComponent },
   { path: 'about', component: AboutComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent },
 ];
 
 @NgModule({
