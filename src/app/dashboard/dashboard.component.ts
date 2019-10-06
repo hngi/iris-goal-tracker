@@ -297,4 +297,8 @@ export class DashboardComponent implements OnInit {
     const d = new Date(scheduleDate);
     return `${d.getFullYear()}-${d.getMonth() < 10 ? '0' + d.getMonth() : d.getMonth()}-${d.getDate() < 10 ? '0' + d.getDate() : d.getDate()}`;
   }
+
+  rating() {
+    swal.fire('SUCCESS', 'Thank you for rating us!', 'success')
+  }
 }
