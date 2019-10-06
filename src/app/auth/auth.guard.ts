@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, Route, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,12 +8,15 @@ import { Observable } from 'rxjs';
 })
 
 export class AuthGuard implements CanActivate {
-  
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    throw new Error("Method not implemented.");
+
+  constructor(private user: UserService) {
+
   }
 
-  constructor(private _router: Router) {
-    
+  canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
+    // console.log(route.params);
+    return new Promise(resolve => {
+      return resolve(this.user.isLoggedIn.getValue());
+    });
   }
 }

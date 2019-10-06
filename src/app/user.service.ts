@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public passwordReset: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private api: ApiService) {
