@@ -24,12 +24,10 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit() {
     // retrieve the token from the url after user clicked the link in the email
     this.token = this.activatedRoute.snapshot.paramMap.get('token');
-    console.log('token at reset password', this.token);
   }
 
   onSubmit(formData: any) {
     this.loading = true;
-    console.log(formData);
     formData.token = this.token;
     this.user.resetPassword(formData).subscribe((res: any) => { // res.data is the user object
       this.passwordResetForm.newPassword = '';
