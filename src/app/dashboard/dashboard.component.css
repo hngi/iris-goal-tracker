@@ -172,6 +172,66 @@ countdown-timer {
   font-size: 28px;
 }
 
+.rate {
+  cursor: pointer;
+}
+
+.rate i {
+  margin-right: 3px;
+  vertical-align: middle;
+}
+
+.ratings input {
+  display: none;
+}
+
+.ratings-body {
+  height: 90px;
+}
+
+.ratings {
+  transform: translate(-50%,-50%) rotateY(180deg);
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 250px;
+}
+
+.ratings label {
+  display: block;
+  cursor: pointer;
+}
+
+.ratings label:before {
+  content: 'star';
+  font-family: Material Icons;
+  position: relative;
+  display: block;
+  font-size: 50px;
+  color: rgb(43, 43, 43);
+}
+
+.ratings label:after {
+  content: 'star';
+  font-family: Material Icons;
+  position: absolute;
+  display: block;
+  font-size: 50px;
+  color: #d4af37;
+  top: 0;
+  opacity: 0;
+  transition: .5s;
+  text-shadow: 0 2px 5px rgba(43, 43, 43, .5);
+}
+
+.ratings label:hover:after,
+.ratings label:hover ~ label:after,
+.ratings input:checked ~ label:after {
+  opacity: 1;
+
+}
+
+
 
 /***    SCROLLBAR     ***/
 
